@@ -1,13 +1,20 @@
 /////////////////////////////////////////////////
+
+let worksData = []; // Variable pour stocker les données de l'API et les réutiliser partout
+
+/////////////////////////////////////////////////
 /**
- * Récupération des travaux depuis l'API
+ * Fonction de Récupération des travaux depuis l'API
  */
+/////////////////////////////////////////////////
 async function fetchWorks() {
   try {
     const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
     const works = await response.json(); // Attente de la conversion en JSON
 
-    // Gestion des travaux récupérés
+    worksData = works; // Stocke les données des travaux
+
+    // Gestion des travaux récupérés, on return la fonction qui affiche les travaux en JSON
     displayWorks(works);
 
     // Gestion des erreurs
@@ -23,10 +30,12 @@ fetchWorks();
 
 /////////////////////////////////////////////////
 /**
- * Affichage des travaux sur le site
+ * Fonction d'Affichage des travaux sur le site
  */
+/////////////////////////////////////////////////
 function displayWorks(works) {
   for (let i = 0; i < works.length; i++) {
+    // Cette variable stock l'index des travaux converties en JSON plus haut
     const work = works[i];
 
     // Selection de la gallery qui accueillera les travaux
@@ -54,10 +63,36 @@ function displayWorks(works) {
     galleryFigure.appendChild(galleryImage);
     // On inclue figcaption dans figure
     galleryFigure.appendChild(galleryFigcaption);
+
+    /////////////////////////////////////////////////
+    /**
+     * Gestionnaire d'événement pour les filtres
+     */
+    /////////////////////////////////////////////////
+
+    // On stock les variables appelant les boutons dans le DOM
+    const btnTous = document.querySelector(".btn-tous");
+    const btnObjets = document.querySelector(".btn-objets");
+    const btnAppartements = document.querySelector(".btn-appartements");
+    const btnHotEtRes = document.querySelector(".btn-hot-et-res");
+
+    // ***** Bouton Objets ***** //
+
+    // On crée un évènement d'écoute au click sur le bouton Objets
+    btnObjets.addEventListener("click", function () {
+      // On stock dans une variable les données de l'API pour cette catégorie
+      const categorieObjets = { id: 1, name: "Objets" };
+
+      // On déclare une variable qui filtre les travaux
+      const worksObjets = worksData.filter(
+        (work) => work.categoryId === categorieObjets.id
+      );
+
+      // On efface le contenu actuel de la galerie
+      gallery.innerHTML = "";
+
+      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
+      displayWorks(worksObjets);
+    });
   }
 }
-
-/////////////////////////////////////////////////
-/**
- * Affichage des boutons pour filtrer le contenu des travaux
- */

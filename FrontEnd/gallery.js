@@ -71,10 +71,12 @@ function displayWorks(works) {
     /////////////////////////////////////////////////
 
     // On stock les variables appelant les boutons dans le DOM
-    const btnTous = document.querySelector(".btn-tous");
-    const btnObjets = document.querySelector(".btn-objets");
-    const btnAppartements = document.querySelector(".btn-appartements");
-    const btnHotEtRes = document.querySelector(".btn-hot-et-res");
+    const btn = document.querySelectorAll(".filtre button"); // Stock tous les boutons filtres
+
+    const btnTous = document.querySelector(".btn-tous"); // Stock le bouton Tous
+    const btnObjets = document.querySelector(".btn-objets"); // Stock tout le bouton Objets
+    const btnAppartements = document.querySelector(".btn-appartements"); // Stock le Appartements
+    const btnHotEtRes = document.querySelector(".btn-hot-et-res"); // Stock le bouton H & R
 
     // ***** Bouton Objets ***** //
 
@@ -93,6 +95,44 @@ function displayWorks(works) {
 
       // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
       displayWorks(worksObjets);
+    });
+
+    // ***** Bouton Appartements ***** //
+
+    // On crée un évènement d'écoute au click sur le bouton Appartements
+    btnAppartements.addEventListener("click", function () {
+      // On stock dans une variable les données de l'API pour cette catégorie
+      const categorieAppartements = { id: 2, name: "Appartements" };
+
+      // On déclare une variable qui filtre les travaux
+      const worksAppartements = worksData.filter(
+        (work) => work.categoryId === categorieAppartements.id
+      );
+
+      // On efface le contenu actuel de la galerie
+      gallery.innerHTML = "";
+
+      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
+      displayWorks(worksAppartements);
+    });
+
+    // ***** Bouton Hotels & Restaurants ***** //
+
+    // On crée un évènement d'écoute au click sur le bouton Appartements
+    btnHotEtRes.addEventListener("click", function () {
+      // On stock dans une variable les données de l'API pour cette catégorie
+      const categorieHotEtRes = { id: 3, name: "Hotels & restaurants" };
+
+      // On déclare une variable qui filtre les travaux
+      const worksHotEtRes = worksData.filter(
+        (work) => work.categoryId === categorieHotEtRes.id
+      );
+
+      // On efface le contenu actuel de la galerie
+      gallery.innerHTML = "";
+
+      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
+      displayWorks(worksHotEtRes);
     });
   }
 }

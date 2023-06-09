@@ -1,6 +1,7 @@
 /////////////////////////////////////////////////
 
-let worksData = []; // Variable pour stocker les données de l'API et les réutiliser partout
+// Variable pour récupérer le localStorage (voir ligne 19)
+let worksData = JSON.parse(localStorage.getItem("worksData")) || [];
 
 /////////////////////////////////////////////////
 /**
@@ -12,10 +13,50 @@ async function fetchWorks() {
     const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
     const works = await response.json(); // Attente de la conversion en JSON
 
-    worksData = works; // Stocke les données des travaux
+    // Transformation de la variable works en string JSON
+    const worksStringify = JSON.stringify(works);
+    // On Stock la chaîne de caractères dans le localStorage (clé, valeur)
+    localStorage.setItem("worksData", worksStringify);
 
-    // Gestion des travaux récupérés, on return la fonction qui affiche les travaux en JSON
-    displayWorks(works);
+    // Gestion d'Affichage des travaux récupérés,on retourne la fonction qui affiche les travaux délcaré plus bas
+    displayWorks(worksData);
+
+    /////////////////////////////////////////////////
+    /**
+     * Fonction de filtrage des boutons
+     */
+    /////////////////////////////////////////////////
+
+    // ***** Bouton Tous ***** //
+    const btnTous = document.querySelector(".btn-tous");
+    btnTous.addEventListener("click", function () {
+      // On efface le contenu actuel de la galerie (on double la query qui est aussi plus bas)
+      const gallery = document.querySelector(".gallery");
+      gallery.innerHTML = "";
+      // On retourne à nouveau la fonction qui affiche les travaux
+      displayWorks(worksData);
+    });
+
+    // ***** Bouton Objets ***** //
+    const btnObjets = document.querySelector(".btn-objets");
+    btnObjets.addEventListener("click", function () {
+      const filteredWorks = worksData.filter((work) => work.categoryId === 1);
+      displayWorks(filteredWorks);
+    });
+
+    // ***** Bouton Appartements ***** //
+    const btnAppartements = document.querySelector(".btn-appartements");
+    btnAppartements.addEventListener("click", function () {
+      const filteredWorks = worksData.filter((work) => work.categoryId === 2);
+      displayWorks(filteredWorks);
+    });
+
+    // ***** Bouton Hotels & Restaurants ***** //
+    const btnHotEtRes = document.querySelector(".btn-hot-et-res");
+    btnHotEtRes.addEventListener("click", function () {
+      const filteredWorks = worksData.filter((work) => work.categoryId === 3);
+      displayWorks(filteredWorks);
+    });
 
     // Gestion des erreurs
   } catch (error) {
@@ -25,7 +66,7 @@ async function fetchWorks() {
     );
   }
 }
-// On appel la fonction
+// On appelle ensuite la fonction
 fetchWorks();
 
 /////////////////////////////////////////////////
@@ -34,12 +75,14 @@ fetchWorks();
  */
 /////////////////////////////////////////////////
 function displayWorks(works) {
-  for (let i = 0; i < works.length; i++) {
-    // Cette variable stock l'index des travaux converties en JSON plus haut
-    const work = works[i];
+  const gallery = document.querySelector(".gallery");
 
-    // Selection de la gallery qui accueillera les travaux
-    const gallery = document.querySelector(".gallery");
+  // On efface le contenu actuel de la galerie
+  gallery.innerHTML = "";
+
+  for (let i = 0; i < works.length; i++) {
+    // Cette variable stocke l'index des travaux convertis en JSON plus haut
+    const work = works[i];
 
     // Creation de la balise dédiée aux figures
     const galleryFigure = document.createElement("figure");
@@ -48,77 +91,16 @@ function displayWorks(works) {
     const galleryImage = document.createElement("img");
     // On va récupérer la source de l'image dans l'API
     galleryImage.src = work.imageUrl;
-    // On va récupérer l'alt l'image dans l'API
+    // On va récupérer l'alt de l'image dans l'API
     galleryImage.alt = work.title;
 
     // Création de la balise dédiée aux figcaptions
     const galleryFigcaption = document.createElement("figcaption");
     galleryFigcaption.innerText = work.title;
 
-    // On rattache les balises créees à leurs sections réspectives
-
-    // On rattache figure a gallery
-    gallery.appendChild(galleryFigure);
-    // On inclue img dans figure
+    // On rattache les balises créées à leurs sections respectives
     galleryFigure.appendChild(galleryImage);
-    // On inclue figcaption dans figure
     galleryFigure.appendChild(galleryFigcaption);
-
-    /////////////////////////////////////////////////
-    /**
-     * Gestionnaire d'événement pour les filtres
-     */
-    /////////////////////////////////////////////////
-
-    // On stock les variables appelant les boutons dans le DOM
-    const btnTous = document.querySelector(".btn-tous"); // Stock le bouton Tous
-    const btnObjets = document.querySelector(".btn-objets"); // Stock tout le bouton Objets
-    const btnAppartements = document.querySelector(".btn-appartements"); // Stock le Appartements
-    const btnHotEtRes = document.querySelector(".btn-hot-et-res"); // Stock le bouton H & R
-
-    // Fonction générique pour les gestionnaires d'événements des boutons
-    function filterCategory(categoryId) {
-      // On déclare une variable qui filtre les travaux
-      const filterWorks = worksData.filter(
-        (work) => work.categoryId === categoryId
-      );
-
-      // On efface le contenu actuel de la galerie
-      gallery.innerHTML = "";
-
-      // On appelle la fonction d'affichage précédente avec les paramètres de la variable filtrante
-      displayWorks(filterWorks);
-    }
-
-    // ***** Bouton Tous ***** //
-
-    // On crée un évènement d'écoute au clic sur le bouton Tous
-    btnTous.addEventListener("click", function () {
-      // On efface le contenu actuel de la galerie
-      gallery.innerHTML = "";
-      // On retourne à nouveau la fonction qui affiche les travaux
-      displayWorks(worksData);
-    });
-
-    // ***** Bouton Objets ***** //
-
-    // On crée un évènement d'écoute au clic sur le bouton Objets
-    btnObjets.addEventListener("click", function () {
-      filterCategory(1); // Appel de la fonction générique avec l'ID de catégorie correspondant
-    });
-
-    // ***** Bouton Appartements ***** //
-
-    // On crée un évènement d'écoute au clic sur le bouton Appartements
-    btnAppartements.addEventListener("click", function () {
-      filterCategory(2); // Appel de la fonction générique avec l'ID de catégorie correspondant
-    });
-
-    // ***** Bouton Hotels & Restaurants ***** //
-
-    // On crée un évènement d'écoute au clic sur le bouton Hotels & Restaurants
-    btnHotEtRes.addEventListener("click", function () {
-      filterCategory(3); // Appel de la fonction générique avec l'ID de catégorie correspondant
-    });
+    gallery.appendChild(galleryFigure);
   }
 }

@@ -191,7 +191,7 @@ nav li {
 }
 
 li:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 /***** Intro *****/
@@ -223,14 +223,53 @@ li:hover {
 
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 50px;
 }
 
 /***** Mes Projets *****/
 
 /***** Filtres *****/
+.filtres {
+  display: flex;
+  justify-content: center;
+
+  gap: 10px;
+}
+
 .filtres button {
+  color: var(--primary-color);
+  background-color: white;
+  border: 1px solid var(--primary-color);
+
+  font-family: "Syne";
+  font-size: 16px;
+  font-weight: 700;
+
+  border-radius: 60px;
+
+  margin-bottom: 50px;
+}
+
+/* Tailles de boutons spécifiques*/
+.filtres .btn-tous,
+.filtres .btn-objets {
+  padding: 0.5em 1.5em;
+}
+
+.filtres .btn-appartements,
+.filtres .btn-h-and-r {
+  padding: 0.5em 0.7em;
+}
+
+.filtres button:hover,
+.filtres button:active {
+  color: white;
   background-color: var(--primary-color);
+  border: 1px solid white;
+
+  cursor: pointer;
+
+  transition: 500ms;
 }
 
 /***** Travaux *****/

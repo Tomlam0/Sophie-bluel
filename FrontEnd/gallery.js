@@ -71,68 +71,54 @@ function displayWorks(works) {
     /////////////////////////////////////////////////
 
     // On stock les variables appelant les boutons dans le DOM
-    const btn = document.querySelectorAll(".filtre button"); // Stock tous les boutons filtres
-
     const btnTous = document.querySelector(".btn-tous"); // Stock le bouton Tous
     const btnObjets = document.querySelector(".btn-objets"); // Stock tout le bouton Objets
     const btnAppartements = document.querySelector(".btn-appartements"); // Stock le Appartements
     const btnHotEtRes = document.querySelector(".btn-hot-et-res"); // Stock le bouton H & R
 
-    // ***** Bouton Objets ***** //
-
-    // On crée un évènement d'écoute au click sur le bouton Objets
-    btnObjets.addEventListener("click", function () {
-      // On stock dans une variable les données de l'API pour cette catégorie
-      const categorieObjets = { id: 1, name: "Objets" };
-
+    // Fonction générique pour les gestionnaires d'événements des boutons
+    function filterCategory(categoryId) {
       // On déclare une variable qui filtre les travaux
-      const worksObjets = worksData.filter(
-        (work) => work.categoryId === categorieObjets.id
+      const filterWorks = worksData.filter(
+        (work) => work.categoryId === categoryId
       );
 
       // On efface le contenu actuel de la galerie
       gallery.innerHTML = "";
 
-      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
-      displayWorks(worksObjets);
+      // On appelle la fonction d'affichage précédente avec les paramètres de la variable filtrante
+      displayWorks(filterWorks);
+    }
+
+    // ***** Bouton Tous ***** //
+
+    // On crée un évènement d'écoute au clic sur le bouton Tous
+    btnTous.addEventListener("click", function () {
+      // On efface le contenu actuel de la galerie
+      gallery.innerHTML = "";
+      // On retourne à nouveau la fonction qui affiche les travaux
+      displayWorks(worksData);
+    });
+
+    // ***** Bouton Objets ***** //
+
+    // On crée un évènement d'écoute au clic sur le bouton Objets
+    btnObjets.addEventListener("click", function () {
+      filterCategory(1); // Appel de la fonction générique avec l'ID de catégorie correspondant
     });
 
     // ***** Bouton Appartements ***** //
 
-    // On crée un évènement d'écoute au click sur le bouton Appartements
+    // On crée un évènement d'écoute au clic sur le bouton Appartements
     btnAppartements.addEventListener("click", function () {
-      // On stock dans une variable les données de l'API pour cette catégorie
-      const categorieAppartements = { id: 2, name: "Appartements" };
-
-      // On déclare une variable qui filtre les travaux
-      const worksAppartements = worksData.filter(
-        (work) => work.categoryId === categorieAppartements.id
-      );
-
-      // On efface le contenu actuel de la galerie
-      gallery.innerHTML = "";
-
-      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
-      displayWorks(worksAppartements);
+      filterCategory(2); // Appel de la fonction générique avec l'ID de catégorie correspondant
     });
 
     // ***** Bouton Hotels & Restaurants ***** //
 
-    // On crée un évènement d'écoute au click sur le bouton Appartements
+    // On crée un évènement d'écoute au clic sur le bouton Hotels & Restaurants
     btnHotEtRes.addEventListener("click", function () {
-      // On stock dans une variable les données de l'API pour cette catégorie
-      const categorieHotEtRes = { id: 3, name: "Hotels & restaurants" };
-
-      // On déclare une variable qui filtre les travaux
-      const worksHotEtRes = worksData.filter(
-        (work) => work.categoryId === categorieHotEtRes.id
-      );
-
-      // On efface le contenu actuel de la galerie
-      gallery.innerHTML = "";
-
-      // On apelle la fonction d'affichage précédente avec les paramètres de la variables filtrante
-      displayWorks(worksHotEtRes);
+      filterCategory(3); // Appel de la fonction générique avec l'ID de catégorie correspondant
     });
   }
 }

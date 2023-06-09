@@ -56,3 +56,8 @@ function displayWorks(works) {
     galleryFigure.appendChild(galleryFigcaption);
   }
 }
+
+/////////////////////////////////////////////////
+/**
+ * Affichage des boutons pour filtrer le contenu des travaux
+ */

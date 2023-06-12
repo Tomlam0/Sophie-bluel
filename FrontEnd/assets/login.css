@@ -1,0 +1,7 @@
+/* ============================
+             HEADER
+   ============================ */
+
+header .active {
+  font-weight: var(--hover-text-color);
+}

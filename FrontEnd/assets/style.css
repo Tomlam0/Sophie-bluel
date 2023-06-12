@@ -251,13 +251,13 @@ li:hover {
 }
 
 /* Tailles de boutons spécifiques*/
-.filtres .btn-tous,
-.filtres .btn-objets {
+.filtres .objets,
+.filtres .btn-tous {
   padding: 0.5em 1.5em;
 }
 
-.filtres .btn-appartements,
-.filtres .btn-hot-et-res {
+.filtres .appartements,
+.filtres .hotels-restaurants {
   padding: 0.5em 0.7em;
 }
 

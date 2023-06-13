@@ -166,6 +166,17 @@ body {
   background-color: var(--bg-color);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  font-weight: var(--hover-text-color);
+
+  cursor: pointer;
+}
+
 /* ============================
              HEADER
    ============================ */
@@ -211,17 +222,6 @@ nav li {
   font-size: 16px;
 
   padding-left: 44px;
-}
-
-li:hover {
-  font-weight: var(--hover-text-color);
-
-  cursor: pointer;
-}
-
-header a {
-  text-decoration: none;
-  color: inherit;
 }
 
 /* ============================
@@ -415,6 +415,10 @@ input[type="submit"]:hover {
    ============================ */
 
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
   height: 60px;
 
   background-color: var(--footer-bg-color);
@@ -422,7 +426,139 @@ footer {
 
 footer nav ul {
   display: flex;
-  justify-content: flex-end;
+  margin-right: 107px;
+}
 
-  margin: 2em;
+footer nav li {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* ============================
+          MEDIA QUERIES  
+   ============================ */
+
+/* ============================
+          LARGE DESKTOP  
+   ============================ */
+
+@media (min-width: 1440.01px) {
+  /* HEADER */
+  header {
+    margin: 50px 20em 0px 20em;
+  }
+
+  /* FOOTER */
+  footer nav ul {
+    margin-right: 20em;
+  }
+}
+
+/* ==============
+       TABLET
+   ============== */
+
+@media (max-width: 1024px) {
+  /* HEADER */
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header ul {
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  header nav li:nth-child(1) {
+    padding: 0;
+  }
+
+  /* SECTION INTRO */
+  #introduction {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 100px;
+  }
+
+  #introduction h2 {
+    line-height: 30px;
+  }
+
+  #introduction article {
+    margin: auto;
+    max-width: 474px;
+    text-align: center;
+  }
+
+  /* GALLERY */
+  .gallery {
+    width: 80%;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* FOOTER */
+  footer {
+    justify-content: center;
+  }
+
+  footer nav ul {
+    margin: auto;
+  }
+
+  footer nav li {
+    padding: 0;
+  }
+}
+
+/* ==============
+       MOBILE
+   ============== */
+
+@media (min-width: 320px) and (max-width: 768px) {
+  /* HEADER */
+  header {
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+  /* SECTION INTRO */
+  #introduction img {
+    width: 80%;
+    height: 80%;
+  }
+
+  #introduction figure {
+    text-align: center;
+  }
+
+  #introduction article {
+    width: 75%;
+  }
+
+  /* FILTERS */
+  .filtres {
+    flex-direction: column;
+    margin: auto;
+    width: 70%;
+  }
+
+  .filtres button {
+    margin: 10px;
+  }
+
+  /* GALLERY */
+  .gallery {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  /* FORM */
+  #contact {
+    width: 60%;
+  }
 }

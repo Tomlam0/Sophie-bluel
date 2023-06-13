@@ -90,7 +90,7 @@ async function fetchWorks() {
 
     // Gestion des erreurs
   } catch (error) {
-    console.log(
+    throw new Error(
       "Une erreur s'est produite lors de la récupération des travaux :",
       error
     );

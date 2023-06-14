@@ -1,16 +1,5 @@
 /////////////////////////////////////////////////
 /**
- * Variable de connexion valide
- */
-/////////////////////////////////////////////////
-
-const validUserId = {
-  email: "sophie.bluel@test.tld",
-  password: "S0phie",
-};
-
-/////////////////////////////////////////////////
-/**
  * Fonction de login qui fetch l'API
  */
 /////////////////////////////////////////////////
@@ -24,13 +13,25 @@ async function login() {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: {
-        email: "",
-        password: "",
-      },
+      body: JSON.stringify({
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      }),
     });
 
     const loginResult = await loginResponse.json(); // Attente de la conversion en JSON
+
+    if (loginResponse.ok) {
+      // Si les identifiants sont ok, on identifie la partie token du JSON
+      localStorage.setItem("token", loginResult.token); // On va stocker le token dans le localStorage
+
+      window.location.href = "index.html"; // Redirection vers l'accueil
+    } else {
+      // Si ce n'est pas bon on va afficher un message d'erreur qui avait été mis en display:none
+      let errorMessage = document.querySelector(".error-message"); // On va récupérer le message d'erreur dans le DOM
+
+      errorMessage.style.display = "block"; // Afficher le message d'erreur
+    }
 
     // Gestion des erreurs
   } catch (error) {
@@ -54,23 +55,6 @@ loginForm.addEventListener("submit", (event) => {
   // Désactivation du comportement par défaut du navigateur
   event.preventDefault();
 
-  // On va chercher les valeurs des champs remplis
-  let emailInput = document.getElementById("email").value;
-  let passwordInput = document.getElementById("password").value;
-
-  // On va vérifier si les champs remplis sont valides
-  if (
-    emailInput === validUserId.email &&
-    passwordInput === validUserId.password
-  ) {
-    // Si les paramètres de connexion sont valides
-    window.location.href = "index_edit.html"; // Redirection vers l'accueil en version _edit
-
-    // ----------------------------- //
-  } else {
-    // Si ce n'est pas bon on va afficher un message d'erreur qui a été mis en display:none
-    let errorMessage = document.querySelector(".error-message"); // On va récupérer le message d'erreur dans le DOM
-
-    errorMessage.style.display = "block"; // Afficher le message d'erreur
-  }
+  //Appel de la fonction qui fetch l'API
+  login();
 });

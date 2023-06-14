@@ -148,7 +148,9 @@ table {
 
   --bg-color: rgba(255, 254, 248, 1);
   --footer-bg-color: rgba(255, 255, 255, 1);
+  --edit-mode-bg-color: rgba(0, 0, 0, 1);
 
+  --dark-bg-text-color: rgba(255, 255, 255, 1);
   --hover-text-color: 600;
 
   --hover-btn-color: rgba(14, 47, 40, 1);
@@ -175,6 +177,52 @@ a:hover {
   font-weight: var(--hover-text-color);
 
   cursor: pointer;
+}
+
+/* ============================
+          EDIT SECTION 
+   ============================ */
+/* Element masqué tant que l'utilisateur n'est pas connecté */
+
+.edit-section {
+  display: none; /* S'active dans le js lors d'un log réussi */
+  justify-content: center;
+
+  height: 60px;
+  background-color: var(--edit-mode-bg-color);
+}
+
+.edit-section .edit-mode {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--dark-bg-text-color);
+  font-size: 14px;
+}
+
+.edit-section .edit-mode .fa-pen-to-square {
+  font-size: 19px;
+}
+
+.edit-section .edit-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-section .edit-button button {
+  background-color: var(--dark-bg-text-color);
+
+  font-family: "Work Sans";
+  font-weight: 600;
+
+  border: none;
+  border-radius: 60px;
+  padding: 11px 23px;
+  height: 38px;
+
+  margin-left: 21px;
 }
 
 /* ============================
@@ -257,6 +305,19 @@ h2 {
   height: 355px;
 }
 
+/* Bouton modifier photo */
+.modif-photo {
+  display: none; /* S'active dans le js lors d'un log réussi */
+  align-items: center;
+
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.modif-photo .fa-pen-to-square {
+  font-size: 18px;
+}
+
 #introduction article {
   margin-left: 72px;
 
@@ -267,12 +328,12 @@ h2 {
   margin-bottom: 1em;
 }
 
-#introduction p {
+#introduction article p {
   margin-bottom: 0.5em;
 }
 
-#introduction p:nth-child(2),
-#introduction p:nth-child(3) {
+#introduction article p:nth-child(2),
+#introduction article p:nth-child(3) {
   padding-bottom: 10px;
 }
 

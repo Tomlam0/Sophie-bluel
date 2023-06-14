@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////
 /**
- * Fonction de login qui fetch l'API
+ *     Fonction de login qui fetch l'API
  */
 /////////////////////////////////////////////////
 
@@ -44,7 +44,7 @@ async function login() {
 
 /////////////////////////////////////////////////
 /**
- *  Envoi du formulaire de connexion
+ *      Envoi du formulaire de connexion
  */
 /////////////////////////////////////////////////
 
@@ -57,4 +57,35 @@ loginForm.addEventListener("submit", (event) => {
 
   //Appel de la fonction qui fetch l'API
   login();
+});
+
+/////////////////////////////////////////////////
+/**
+ *   Affichage / masquage des icones password
+ */
+/////////////////////////////////////////////////
+
+// On va chercher l'input du password dans le DOM
+const passwordField = document.getElementById("password");
+
+// On va chercher les éléments icone dans le DOM
+const eye = document.querySelector(".fa-eye");
+const eyeOff = document.querySelector(".fa-eye-slash");
+
+// On va écouter le click sur l'icone qui affiche le password
+eye.addEventListener("click", () => {
+  eye.style.display = "none"; // On désactive le bouton afficher
+
+  eyeOff.style.display = "block"; // On fait apparaitre le bouton masquer
+
+  passwordField.type = "text"; // On transforme en type "text" pour afficher le password
+});
+
+// Puis on inverse
+eyeOff.addEventListener("click", () => {
+  eyeOff.style.display = "none";
+
+  eye.style.display = "block";
+
+  passwordField.type = "password";
 });

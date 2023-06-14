@@ -48,14 +48,37 @@ header .active {
   outline: 1px solid var(--primary-color);
 }
 
-#login input[type="email"],
-#login input[type="password"] {
+#login #email,
+#login #password {
+  color: var(--primary-color);
+  font-family: "Work Sans";
+
   padding-left: 15px;
 }
 
 #login a {
   text-align: center;
   text-decoration: underline;
+}
+
+/* Bloc d'icones d'affichage ou de masquage du password */
+.password-icon {
+  position: relative;
+  left: 350px;
+  bottom: 33px;
+
+  transition: all 0.2s;
+
+  color: var(--primary-color);
+}
+
+.password-icon:hover {
+  cursor: pointer;
+}
+
+/* Icone de masquage */
+.password-icon .fa-eye-slash {
+  display: none;
 }
 
 /* Message d'erreur généré par login.js */

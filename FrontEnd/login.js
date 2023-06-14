@@ -1,5 +1,22 @@
 /////////////////////////////////////////////////
 /**
+ *      Envoi du formulaire de connexion
+ */
+/////////////////////////////////////////////////
+
+// On va utiliser le paramètre submit, c'est donc le formulaire entier qui doit être pris en compte
+let loginForm = document.getElementById("login");
+
+loginForm.addEventListener("submit", (event) => {
+  // Désactivation du comportement par défaut du navigateur
+  event.preventDefault();
+
+  //Appel de la fonction qui fetch l'API (l.24)
+  login();
+});
+
+/////////////////////////////////////////////////
+/**
  *     Fonction de login qui fetch l'API
  */
 /////////////////////////////////////////////////
@@ -41,23 +58,6 @@ async function login() {
     );
   }
 }
-
-/////////////////////////////////////////////////
-/**
- *      Envoi du formulaire de connexion
- */
-/////////////////////////////////////////////////
-
-// On va utiliser le paramètre submit, c'est donc le formulaire entier qui doit être pris en compte
-let loginForm = document.getElementById("login");
-
-loginForm.addEventListener("submit", (event) => {
-  // Désactivation du comportement par défaut du navigateur
-  event.preventDefault();
-
-  //Appel de la fonction qui fetch l'API
-  login();
-});
 
 /////////////////////////////////////////////////
 /**

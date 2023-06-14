@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="./assets/style.css">
 
 	<script src="gallery.js" defer></script>
+	<script src="homepage-edit.js" defer></script>
 
 </head>
 
@@ -28,7 +29,9 @@
 			<ul>
 				<li><a href="/FrontEnd/index.html">projets</a></li>
 				<li><a href="#">contact</a></li>
-				<li><a href="/FrontEnd/login.html">login</a></li>
+				<li class="login"><a href="/FrontEnd/login.html">login</a></li>
+				<!-- Element masqué dans le css pour logout -->
+				<li class="logout"><a href="/FrontEnd/index.html">logout</a></li>
 				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 			</ul>
 		</nav>
@@ -54,7 +57,14 @@
 		<!-- Mes Projets -->
 		<section id="portfolio">
 
-			<h2>Mes Projets</h2>
+			<div class="section-projets">
+				<h2>Mes projets</h2>
+				<!-- Bouton modifier projet masqué par défaut-->
+				<div class="modif-projets">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<p>modifier</p>
+				</div>
+			</div>
 
 			<!-- Filtres -->
 			<div class="filtres">

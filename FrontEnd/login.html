@@ -51,16 +51,19 @@
         <input type="email" name="email" id="email" value="sophie.bluel@test.tld" required>
 
         <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" value="S0phie" pattern=".{4,}"
-          title="Le mot de passe doit comporter au moins 4 caractères" required>
+        <div class="password-container">
+          <input type="password" name="password" id="password" value="S0phie" pattern=".{4,}"
+            title="Le mot de passe doit comporter au moins 4 caractères" required>
 
-        <div class="password-icon">
-          <!-- Icone afficher mot de passe -->
-          <i class="far fa-eye" title="Afficher le mot de passe"></i>
-          <!-- Icone masquer mot de passe -->
-          <i class="far fa-eye-slash" title="Masquer le mot de passe"></i>
+          <div class="password-icon">
+            <!-- Icone afficher mot de passe -->
+            <i class="far fa-eye" title="Afficher le mot de passe"></i>
+            <!-- Icone masquer mot de passe -->
+            <i class="far fa-eye-slash" title="Masquer le mot de passe"></i>
+          </div>
         </div>
 
+        <!-- Message d'erreur s'affiche dans le js -->
         <p class="error-message">Erreur dans l'identifiant ou le mot de passe</p>
 
         <input type="submit" id="submit" value="Se connecter">

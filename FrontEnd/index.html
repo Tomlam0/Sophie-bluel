@@ -16,24 +16,39 @@
 	<script src="https://kit.fontawesome.com/0ea3a7949f.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="./assets/modal.css">
 
 	<script src="gallery.js" defer></script>
 	<script src="homepage-edit.js" defer></script>
+	<script src="modal-gallery.js" defer></script>
 
 </head>
 
 <body>
 
-	<!-- Bandeau mode édition-->
+	<!-- Modal Gallerie masqué dans style.css-->
+	<div class="modal-container">
+		<div class="overlay modal-trigger">
+			<div class="modal">
+				<i class="fa-solid fa-xmark"></i>
+				<h3>Galerie photo</h3>
+				<hr>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bandeau mode édition masqué dans style.css -->
 	<div class="edit-section">
-		<!-- Bouton modifier photo masqué par défaut-->
+		<!-- Bouton modifier photo -->
 		<div class="edit-mode">
 			<i class="fa-regular fa-pen-to-square"></i>
 			<p>Mode édition</p>
 		</div>
+
 		<div class="edit-button">
-			<button>publier les changements</button>
+			<div>publier les changements</div>
 		</div>
+
 	</div>
 
 	<header>
@@ -43,7 +58,7 @@
 				<li><a href="/FrontEnd/index.html">projets</a></li>
 				<li><a href="#">contact</a></li>
 				<li class="login"><a href="/FrontEnd/login.html">login</a></li>
-				<!-- Element masqué dans le css pour logout -->
+				<!-- Element logout masqué dans style.css -->
 				<li class="logout"><a href="/FrontEnd/index.html">logout</a></li>
 				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 			</ul>
@@ -56,7 +71,7 @@
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 
-				<!-- Bouton modifier photo masqué par défaut-->
+				<!-- Bouton modifier photo masqué dans style.css -->
 				<div class="modif-photo">
 					<i class="fa-regular fa-pen-to-square"></i>
 					<p>modifier</p>
@@ -81,8 +96,8 @@
 			<div class="section-projets">
 				<h2>Mes projets</h2>
 
-				<!-- Bouton modifier projet masqué par défaut-->
-				<div class="modif-projets">
+				<!-- Bouton modifier projet masqué dans style.css-->
+				<div class="modif-projets modal-trigger">
 					<i class="fa-regular fa-pen-to-square"></i>
 					<p>modifier</p>
 				</div>

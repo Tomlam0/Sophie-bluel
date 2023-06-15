@@ -62,10 +62,20 @@ header .active {
 }
 
 /* Bloc d'icones d'affichage ou de masquage du password */
-.password-icon {
+
+.password-container {
   position: relative;
-  left: 350px;
-  bottom: 33px;
+}
+
+.password-container input {
+  width: 365px;
+}
+
+.password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 
   transition: all 0.2s;
 
@@ -88,4 +98,19 @@ header .active {
   color: var(--secondary-color);
   text-align: center;
   margin-top: 15px;
+}
+
+/* ============================
+          MEDIA QUERIES  
+   ============================ */
+
+/* ==============
+       MOBILE
+   ============== */
+
+@media (min-width: 320px) and (max-width: 768px) {
+  #login {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 }

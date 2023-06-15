@@ -1,15 +1,20 @@
 ///////////////////////////////////////////////////////////////
 /**
- *      Affichage de la modal au click sur modifier
+ *      Ouverture de la modal au click sur modifier
  */
 ///////////////////////////////////////////////////////////////
 
 const modalTrigger = document.querySelector(".modif-projets"); // On récupère le bouton modifier
-const modal = document.querySelector(".modal-container"); // On récupère la modal
+const modalDisplay = document.querySelector(".modal-container"); // On récupère le block modal entier
+const modalWindow = document.querySelector(".modal"); // On récupère la modal toute seule
+const modalCloseButton = document.querySelector(".fa-xmark"); // On récupère l'icone close
 
-modalTrigger.addEventListener("click", () => {
-  modal.style.display = "block"; // on active la modal
-});
+// Fonction qui active la modal
+const openModal = () => {
+  modalDisplay.style.display = "block";
+};
+
+modalTrigger.addEventListener("click", openModal);
 
 ///////////////////////////////////////////////////////////////
 /**
@@ -17,11 +22,23 @@ modalTrigger.addEventListener("click", () => {
  */
 ///////////////////////////////////////////////////////////////
 
-const modalClose = document.querySelector(".fa-xmark"); // On récupère l'icone close
+// Fonction qui désactive la modal
+const closeModal = () => {
+  modalDisplay.style.display = "none";
+};
 
-modalClose.addEventListener("click", () => {
-  modal.style.display = "none"; // on desactive la modal
-});
+// Ferme la modal avec l'icone
+modalCloseButton.addEventListener("click", closeModal);
+
+// Ferme la modal avec click en dehors
+// document.addEventListener("click", (event) => {
+//   if (
+//     !modalWindow.contains(event.target) &&
+//     modalDisplay.style.display === "block"
+//   ) {
+//     closeModal();
+//   }
+// });
 
 ///////////////////////////////////////////////////////////////
 /**

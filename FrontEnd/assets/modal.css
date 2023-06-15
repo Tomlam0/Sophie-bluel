@@ -32,8 +32,6 @@
 
   border-radius: 10px;
   background: rgba(255, 255, 255, 1);
-
-  overflow: scroll;
 }
 
 .modal-container .fa-xmark {
@@ -44,6 +42,10 @@
   right: 35px;
 
   font-size: 20px;
+}
+
+.modal-container .fa-xmark:hover {
+  color: var(--secondary-color);
 }
 
 .modal-container h3 {

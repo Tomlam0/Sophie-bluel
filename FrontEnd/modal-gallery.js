@@ -30,7 +30,7 @@ document.addEventListener("click", function (event) {
 
 ///////////////////////////////////////////////////////////////
 /**
- *        Génération de la gallerie dans la modal
+ *        Génération de la galerie dans la modal
  */
 ///////////////////////////////////////////////////////////////
 
@@ -51,6 +51,9 @@ function editWorks(works) {
     const galleryDeleteIcon = document.createElement("i"); // Création de l'icone de supression
     galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can");
 
+    const galleryMoveIcon = document.createElement("i"); // Création de l'icone de deplacement
+    galleryMoveIcon.classList.add("fa-solid", "fa-arrows-up-down-left-right");
+
     const galleryEditText = document.createElement("figcaption"); // Création de la balise dédiée aux texte
     galleryEditText.innerText = "éditer";
 
@@ -59,6 +62,7 @@ function editWorks(works) {
     galleryEditFigure.appendChild(galleryEditImage);
     galleryEditFigure.appendChild(galleryEditText);
     galleryEditFigure.appendChild(galleryDeleteIcon);
+    galleryEditFigure.appendChild(galleryMoveIcon);
   }
 }
 
@@ -78,8 +82,23 @@ async function editFetchWorks() {
   }
 }
 
-// Appel de la fonction de Récupération des travaux depuis l'API (l.38)
+// Appel de la fonction de Récupération des travaux depuis l'API (l.39)
 editFetchWorks();
+
+/////////////////////////////////////////////////
+/**
+ *          Déplacement des travaux
+ */
+/////////////////////////////////////////////////
+
+const image = document.querySelector(".gallery-edit figure");
+const moveIcon = document.querySelector(".fa-arrows-up-down-left-right");
+const editText = document.querySelector(".gallery-edit figcaption");
+
+image.addEventListener("mouseover", () => {
+  moveIcon.style.display = "block";
+  editText.setAttribute("font-weight", "var(--hover-text-color)");
+});
 
 /////////////////////////////////////////////////
 /**

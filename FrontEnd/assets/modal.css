@@ -102,9 +102,12 @@
 
 .gallery-edit figcaption {
   font-size: 12px;
+
+  cursor: pointer;
 }
 
 /* ----- Icons Zone ----- */
+
 .gallery-edit .fa-trash-can {
   position: absolute;
   top: 10px;
@@ -119,8 +122,26 @@
 
   cursor: pointer;
 }
+.gallery-edit .fa-arrows-up-down-left-right {
+  display: none; /* S'active dans le js lors du click sur l'image */
 
-/* ----- Buttons Zone ----- */
+  position: absolute;
+  top: 10px;
+  right: 25px;
+
+  background-color: black;
+  padding: 4px;
+  border-radius: 2px;
+
+  font-size: 9px;
+  color: var(--dark-bg-text-color);
+
+  cursor: pointer;
+}
+
+/* ============================
+          BUTTONS ZONE
+   ============================ */
 
 .modal .button-zone {
   display: flex;
@@ -149,6 +170,9 @@
 
 .modal .add-work-button:hover {
   background-color: var(--hover-btn-color);
+
+  transition: 300ms ease-in-out;
+
 }
 
 .modal .delete-work {
@@ -189,6 +213,15 @@
 
     font-size: 12px;
   }
+
+  .gallery-edit .fa-arrows-up-down-left-right {
+    top: 12px;
+    right: 38px;
+
+    padding: 5.5px;
+
+    font-size: 13px;
+  }
 }
 
 /* ==============
@@ -204,6 +237,15 @@
   .gallery-edit .fa-trash-can {
     top: 14px;
     right: 10px;
+
+    padding: 8px;
+
+    font-size: 15px;
+  }
+
+  .gallery-edit .fa-arrows-up-down-left-right {
+    top: 14px;
+    right: 48px;
 
     padding: 8px;
 

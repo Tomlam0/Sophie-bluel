@@ -182,6 +182,8 @@ a:hover {
   font-weight: var(--hover-text-color);
 
   cursor: pointer;
+
+  transition: 100ms ease-in-out;
 }
 
 /* ============================
@@ -227,6 +229,10 @@ a:hover {
   border-radius: 60px;
   padding: 13px;
   margin-left: 21px;
+}
+
+.edit-section .edit-button div:hover {
+  color: var(--secondary-color);
 }
 
 /* ============================
@@ -314,19 +320,25 @@ h2 {
   display: none; /* S'active dans le js lors d'un log réussi */
   align-items: center;
 
-  cursor: pointer;
-
   margin-top: 10px;
   gap: 8px;
 }
 
-.modif-photo:hover {
+.modif-photo .fa-pen-to-square,
+.modif-photo p {
+  cursor: pointer;
+}
+
+.modif-photo .fa-pen-to-square:hover,
+.modif-photo p:hover {
   font-weight: var(--hover-text-color);
 }
 
 .modif-photo .fa-pen-to-square {
   font-size: 18px;
 }
+
+/* Fin Bouton modifier photo */
 
 #introduction article {
   margin-left: 72px;
@@ -371,7 +383,8 @@ h2 {
   gap: 8px;
 }
 
-.modif-projets:hover {
+.modif-projets .fa-pen-to-square:hover,
+.modif-projets p:hover {
   font-weight: var(--hover-text-color);
 }
 
@@ -506,6 +519,7 @@ h2 {
   padding: 10px;
 }
 
+input[type="button"],
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
@@ -522,8 +536,11 @@ input[type="submit"] {
   border-radius: 60px;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
   background-color: var(--hover-btn-color);
+
+  transition: 500ms;
 }
 
 /* ============================

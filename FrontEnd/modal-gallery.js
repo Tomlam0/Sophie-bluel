@@ -1,114 +1,114 @@
+//////////////////////////////////////////////////
+/**
+ *       Ouverture et fermeture de la modal
+ */
+//////////////////////////////////////////////////
+
+const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
+const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
+
+// Fonction qui ouvre la modal
+function openModal() {
+  modalContainer.classList.add("active");
+}
+// Fonction qui ferme la modal
+function closeModal() {
+  modalContainer.classList.remove("active");
+}
+
+// Ajoute un gestionnaire d'événement pour ouvrir la modal lorsque clique sur un bouton avec la classe "modal-trigger"
+modalTriggers.forEach((trigger) =>
+  trigger.addEventListener("click", openModal)
+);
+
+// Ajoute un gestionnaire d'événement pour fermer la modal lorsque vous cliquez à l'extérieur de celle-ci
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("modal-trigger")) {
+    closeModal(); // Ferme la modal
+  }
+});
+
 ///////////////////////////////////////////////////////////////
 /**
- *      Ouverture de la modal au click sur modifier
+ *        Génération de la gallerie dans la modal
  */
 ///////////////////////////////////////////////////////////////
 
-const modalTrigger = document.querySelector(".modif-projets"); // On récupère le bouton modifier
-const modalDisplay = document.querySelector(".modal-container"); // On récupère le block modal entier
-const modalWindow = document.querySelector(".modal"); // On récupère la modal toute seule
-const modalCloseButton = document.querySelector(".fa-xmark"); // On récupère l'icone close
+// Fonction d'Affichage des travaux
 
-// Fonction qui active la modal
-const openModal = () => {
-  modalDisplay.style.display = "block";
-};
+function editWorks(works) {
+  const galleryEdit = document.querySelector(".gallery-edit");
 
-modalTrigger.addEventListener("click", openModal);
+  for (let i = 0; i < works.length; i++) {
+    const work = works[i];
 
-///////////////////////////////////////////////////////////////
+    const galleryEditFigure = document.createElement("figure"); // Création de la balise dédiée aux figures
+
+    const galleryEditImage = document.createElement("img"); // Création de la balise dédiée aux images
+    galleryEditImage.src = work.imageUrl; // On va récupérer la source de l'image dans l'API
+    galleryEditImage.alt = work.title; // On va récupérer l'alt de l'image dans l'API
+
+    const galleryDeleteIcon = document.createElement("i"); // Création de l'icone de supression
+    galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can");
+
+    const galleryEditText = document.createElement("figcaption"); // Création de la balise dédiée aux texte
+    galleryEditText.innerText = "éditer";
+
+    // On rattache les balises créées à leurs sections respectives
+    galleryEdit.appendChild(galleryEditFigure);
+    galleryEditFigure.appendChild(galleryEditImage);
+    galleryEditFigure.appendChild(galleryEditText);
+    galleryEditFigure.appendChild(galleryDeleteIcon);
+  }
+}
+
+// Fonction de Récupération des travaux depuis l'API
+
+async function editFetchWorks() {
+  try {
+    const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
+    const works = await response.json(); // Attente de la conversion en JSON
+
+    editWorks(works); // Appel à la fonction (l.39) pour afficher les travaux
+  } catch (error) {
+    throw new Error(
+      "Une erreur s'est produite lors de la récupération des travaux :",
+      error
+    );
+  }
+}
+
+// Appel de la fonction de Récupération des travaux depuis l'API (l.38)
+editFetchWorks();
+
+/////////////////////////////////////////////////
 /**
- *              Fermeture de la modal
+ *            Suppression des travaux
  */
-///////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////
 
-// Fonction qui désactive la modal
-const closeModal = () => {
-  modalDisplay.style.display = "none";
-};
-
-// Ferme la modal avec l'icone
-modalCloseButton.addEventListener("click", closeModal);
-
-// Ferme la modal avec click en dehors
-// document.addEventListener("click", (event) => {
-//   if (
-//     !modalWindow.contains(event.target) &&
-//     modalDisplay.style.display === "block"
-//   ) {
-//     closeModal();
+// iconeElement.addEventListener("click", async (e) => {
+//   e.preventDefault();
+//   e.stopPropagation();
+//   const iconeElement = article.id;
+//   let monToken = localStorage.getItem("token");
+//   console.log(iconeElement);
+//   let response = await fetch(
+//     `http://localhost:5678/api/works/${iconeElement}`,
+//     {
+//       method: "DELETE",
+//       headers: {
+//         accept: "*/*",
+//         Authorization: `Bearer ${"token"}`,
+//       },
+//     }
+//   );
+//   if (response.ok) {
+//     return false;
+//     // if HTTP-status is 200-299
+//     //alert("Photo supprimé avec succes");
+//     // obtenir le corps de réponse (la méthode expliquée ci-dessous)
+//   } else {
+//     alert("Echec de suppression");
 //   }
 // });
-
-///////////////////////////////////////////////////////////////
-/**
- *     ----
- */
-///////////////////////////////////////////////////////////////
-
-// function genererPhotosModal(photosModal) {
-//   //Création d'une boucle qui va prendre toutes les photos
-//   for (let i = 0; i < photosModal.length; i++) {
-//     // Création des balises
-//     const article = photosModal[i];
-
-//     const sectionGallery = document.querySelector(".galleryModal");
-
-//     const articleElement = document.createElement("article");
-//     articleElement.classList.add("photosRealisation");
-//     articleElement.dataset.id = [i];
-
-//     const idElement = document.createElement("p");
-//     idElement.innerText = article.id;
-
-//     const titleElement = document.createElement("p");
-//     titleElement.innerText = "editer";
-
-//     // Ajout de l'icone supprimer
-//     const iconeElement = document.createElement("i");
-//     iconeElement.classList.add("deletePhoto");
-//     iconeElement.innerHTML = '<<i class="fa-regular fa-trash-can"></i>';
-
-//     const imageElement = document.createElement("img");
-//     imageElement.src = article.imageUrl;
-
-//     const categoryIdElement = document.createElement("p");
-//     categoryIdElement.innerText = article.categoryId;
-
-//     //Ajout de articleElement dans sectionGallery
-
-//     sectionGallery.appendChild(articleElement);
-
-//     //Ajout de nos balises au DOM
-//     articleElement.appendChild(imageElement);
-//     articleElement.appendChild(titleElement);
-//   }
-//   articleElement.appendChild(iconeElement);
-
-//   //--------------Suppression photo--------------------------------
-//   iconeElement.addEventListener("click", async (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     const iconeElement = article.id;
-//     let monToken = localStorage.getItem("token");
-//     console.log(iconeElement);
-//     let response = await fetch(
-//       `http://localhost:5678/api/works/${iconeElement}`,
-//       {
-//         method: "DELETE",
-//         headers: {
-//           accept: "*/*",
-//           Authorization: `Bearer ${"token"}`,
-//         },
-//       }
-//     );
-//     if (response.ok) {
-//       return false;
-//       // if HTTP-status is 200-299
-//       //alert("Photo supprimé avec succes");
-//       // obtenir le corps de réponse (la méthode expliquée ci-dessous)
-//     } else {
-//       alert("Echec de suppression");
-//     }
-//   });
-// }

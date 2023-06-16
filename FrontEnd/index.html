@@ -28,12 +28,22 @@
 
 	<!-- Modal Gallerie masqué dans style.css-->
 	<div class="modal-container">
+
 		<div class="overlay modal-trigger">
-			<div class="modal">
-				<i class="fa-solid fa-xmark"></i>
-				<h3>Galerie photo</h3>
+
+			<div class="modal" role="dialog" aria-labelledby="modalTitle">
+				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
+				<h3 id="modalTitle">Galerie photo</h3>
+				<div class="gallery-edit">
+					<!-- Contenu fetch API dans modal-gallery.js -->
+				</div>
 				<hr>
+				<div class="button-zone">
+					<button class="add-work-button">Ajouter une photo</button>
+					<p class="delete-work">Supprimer la galerie</p>
+				</div>
 			</div>
+
 		</div>
 	</div>
 

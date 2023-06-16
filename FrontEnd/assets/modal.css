@@ -1,14 +1,19 @@
 /* ============================
-          MODAL GALLERIE
+          MODAL DISPLAY
    ============================ */
 
 .modal-container {
-  display: none; /* S'active dans le js lors du click sur modifier */
+  visibility: hidden; /* S'active dans le js lors du click sur modifier */
   position: fixed;
 
   top: 0;
   width: 100vw;
   height: 100vh;
+}
+
+/* Cette classe est générée par le js */
+.modal-container.active {
+  visibility: visible; /* S'active dans le js lors du click sur modifier */
 }
 
 .overlay {
@@ -23,8 +28,11 @@
 .modal {
   position: absolute;
 
-  width: 630px;
-  height: 731px;
+  width: 60vw;
+  height: 730px;
+
+  min-width: 300px;
+  max-width: 630px;
 
   top: 50%;
   left: 50%;
@@ -32,6 +40,12 @@
 
   border-radius: 10px;
   background: rgba(255, 255, 255, 1);
+
+  overflow: scroll;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 .modal-container .fa-xmark {
@@ -45,16 +59,154 @@
 }
 
 .modal-container .fa-xmark:hover {
-  color: var(--secondary-color);
+  color: var(--delete-text-color);
 }
 
 .modal-container h3 {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 68px;
 
   font-size: 26px;
 }
 
 .modal-container hr {
-  width: 420px;
+  margin: 0 15%;
+}
+
+/* ============================
+          MODAL GALLERY
+   ============================ */
+
+.gallery-edit {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 9px;
+
+  margin: 42px 15%;
+}
+
+.gallery-edit figure {
+  position: relative; /* Pour permettre aux icones d'être en position absolue */
+  padding-top: 4px;
+}
+
+.gallery-edit img {
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.gallery-edit img:active {
+  cursor: grab;
+}
+
+.gallery-edit figcaption {
+  font-size: 12px;
+}
+
+/* ----- Icons Zone ----- */
+.gallery-edit .fa-trash-can {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+
+  background-color: black;
+  padding: 4px;
+  border-radius: 2px;
+
+  font-size: 9px;
+  color: var(--dark-bg-text-color);
+
+  cursor: pointer;
+}
+
+/* ----- Buttons Zone ----- */
+
+.modal .button-zone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal .add-work-button {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px !important;
+
+  color: white;
+  background-color: var(--primary-color);
+
+  margin: 2em auto;
+  width: 237px;
+  height: 37px !important;
+
+  text-align: center;
+  border-radius: 60px;
+  border: none;
+
+  cursor: pointer;
+}
+
+.modal .add-work-button:hover {
+  background-color: var(--hover-btn-color);
+}
+
+.modal .delete-work {
+  text-align: center;
+  font-family: "Syne";
+  font-size: 12px;
+
+  color: var(--delete-text-color);
+
+  cursor: pointer;
+
+  margin-bottom: 40px;
+}
+
+/* ============================
+          MEDIA QUERIES  
+   ============================ */
+
+/* ==============
+       TABLET
+   ============== */
+
+@media (max-width: 1024px) {
+  .gallery-edit {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-edit figcaption {
+    font-size: 15px;
+  }
+
+  /* ----- Icons Zone ----- */
+  .gallery-edit .fa-trash-can {
+    top: 12px;
+    right: 8px;
+
+    padding: 6px;
+
+    font-size: 12px;
+  }
+}
+
+/* ==============
+       MOBILE
+   ============== */
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .gallery-edit {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ----- Icons Zone ----- */
+  .gallery-edit .fa-trash-can {
+    top: 14px;
+    right: 10px;
+
+    padding: 8px;
+
+    font-size: 15px;
+  }
 }

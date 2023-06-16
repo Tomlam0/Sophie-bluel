@@ -11,7 +11,7 @@ function displayWorks(works) {
   gallery.innerHTML = ""; // On efface le contenu actuel de la galerie
 
   for (let i = 0; i < works.length; i++) {
-    const work = works[i]; // Cette variable stocke l'index des travaux convertis en JSON plus haut
+    const work = works[i]; 
 
     const galleryFigure = document.createElement("figure"); // Création de la balise dédiée aux figures
 
@@ -23,9 +23,10 @@ function displayWorks(works) {
     galleryFigcaption.innerText = work.title; // On va récupérer le titre de l'image dans l'API
 
     // On rattache les balises créées à leurs sections respectives
+    gallery.appendChild(galleryFigure);
     galleryFigure.appendChild(galleryImage);
     galleryFigure.appendChild(galleryFigcaption);
-    gallery.appendChild(galleryFigure);
+
   }
 }
 

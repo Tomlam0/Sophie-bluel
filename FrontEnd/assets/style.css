@@ -143,16 +143,21 @@ table {
    ============== */
 
 :root {
+  /* Mains */
   --primary-color: #1d6154;
   --secondary-color: #b1663c;
 
+  /* Backgrounds */
   --bg-color: rgba(255, 254, 248, 1);
   --footer-bg-color: rgba(255, 255, 255, 1);
   --edit-mode-bg-color: rgba(0, 0, 0, 1);
 
+  /* Texts */
   --dark-bg-text-color: rgba(255, 255, 255, 1);
   --hover-text-color: 600;
+  --delete-text-color: rgba(214, 83, 83, 1);
 
+  /* Contextual */
   --hover-btn-color: rgba(14, 47, 40, 1);
 }
 

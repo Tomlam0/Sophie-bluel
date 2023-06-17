@@ -9,23 +9,37 @@
   top: 0;
   width: 100vw;
   height: 100vh;
+
+  transition: visibility 0.4s;
 }
 
-/* Cette classe est générée par le js */
+/* La classe .active est générée par le js */
 .modal-container.active {
   visibility: visible; /* S'active dans le js lors du click sur modifier */
 }
 
 .overlay {
+  opacity: 0; /* Pour permettre de gerer l'animation de la transition */
+
   position: absolute;
 
   width: 100%;
   height: 100%;
 
   background: rgba(0, 0, 0, 0.3);
+
+  transition: opacity 0.4s 0.2s ease-out;
+}
+
+/* selecteur qui permet uniquement l'animation */
+.modal-container.active .overlay {
+  opacity: 1; /* Quand le container est en active, l'overlay retrouve son opacité avec une transition */
+  transition: opacity 0.4s ease-out;
 }
 
 .modal {
+  opacity: 0; /* Pour permettre de gerer l'animation de la transition*/
+
   position: absolute;
 
   width: 60vw;
@@ -36,14 +50,28 @@
 
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 
   border-radius: 10px;
   background: rgba(255, 255, 255, 1);
 
   overflow: scroll;
+
+  /* Permet le centrage de la modal dans le container */
+  /* -50px correspond au decallage pour l'animation */
+  transform: translate(-50%, calc(-50% - 50px));
+
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
+/* selecteur qui permet uniquement l'animation */
+.modal-container.active .modal {
+  opacity: 1; /* Quand le container est en active, l'overlay retrouve son opacité avec une transition */
+  /* le translate est remis aux paramètres d'origine pour permettre le retour de la transition */
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+}
+
+/* Desactive le visuel de la scrollbar */
 .modal::-webkit-scrollbar {
   display: none;
 }
@@ -60,6 +88,8 @@
 
 .modal-container .fa-xmark:hover {
   color: var(--delete-text-color);
+
+  transition: 200ms ease-in-out;
 }
 
 .modal-container h3 {
@@ -96,6 +126,11 @@
   cursor: pointer;
 }
 
+.gallery-edit img:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
 .gallery-edit img:active {
   cursor: grab;
 }
@@ -104,6 +139,10 @@
   font-size: 12px;
 
   cursor: pointer;
+}
+
+.gallery-edit img:hover + figcaption {
+  font-weight: bold;
 }
 
 /* ----- Icons Zone ----- */
@@ -139,6 +178,10 @@
   cursor: pointer;
 }
 
+.gallery-edit img:hover ~ .fa-arrows-up-down-left-right {
+  display: block;
+}
+
 /* ============================
           BUTTONS ZONE
    ============================ */
@@ -172,7 +215,6 @@
   background-color: var(--hover-btn-color);
 
   transition: 300ms ease-in-out;
-
 }
 
 .modal .delete-work {
@@ -185,6 +227,12 @@
   cursor: pointer;
 
   margin-bottom: 40px;
+}
+
+.modal .delete-work:hover {
+  color: var(--hover-delete-text-color);
+
+  transition: 300ms ease-in-out;
 }
 
 /* ============================

@@ -1,11 +1,14 @@
 //////////////////////////////////////////////////
+
+const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
+const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
+const galleryEdit = document.querySelector(".gallery-edit"); // On récupère le block edit avec les travaux
+
+//////////////////////////////////////////////////
 /**
  *       Ouverture et fermeture de la modal
  */
 //////////////////////////////////////////////////
-
-const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
-const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
 
 // Fonction qui ouvre la modal
 function openModal() {
@@ -37,8 +40,6 @@ document.addEventListener("click", function (event) {
 // Fonction d'Affichage des travaux
 
 function editWorks(works) {
-  const galleryEdit = document.querySelector(".gallery-edit");
-
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
 
@@ -47,6 +48,7 @@ function editWorks(works) {
     const galleryEditImage = document.createElement("img"); // Création de la balise dédiée aux images
     galleryEditImage.src = work.imageUrl; // On va récupérer la source de l'image dans l'API
     galleryEditImage.alt = work.title; // On va récupérer l'alt de l'image dans l'API
+    galleryEditImage.classList.add("draggable"); // on ajoute une class pour la gestion du deplacement futur
 
     const galleryDeleteIcon = document.createElement("i"); // Création de l'icone de supression
     galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can");
@@ -91,13 +93,31 @@ editFetchWorks();
  */
 /////////////////////////////////////////////////
 
-const image = document.querySelector(".gallery-edit figure");
-const moveIcon = document.querySelector(".fa-arrows-up-down-left-right");
-const editText = document.querySelector(".gallery-edit figcaption");
+const draggables = document.querySelectorAll(".draggable");
+let currentFigure = null;
+let initialMouseX = 0;
+let initialMouseY = 0;
 
-image.addEventListener("mouseover", () => {
-  moveIcon.style.display = "block";
-  editText.setAttribute("font-weight", "var(--hover-text-color)");
+draggables.forEach((draggable) => {
+  draggable.addEventListener("mousedown", (event) => {
+    currentFigure = draggable;
+    initialMouseX = event.clientX - draggable.offsetLeft;
+    initialMouseY = event.clientY - draggable.offsetTop;
+    draggable.style.cursor = "grabbing";
+  });
+
+  draggable.addEventListener("mousemove", (event) => {
+    if (currentFigure === draggable) {
+      const deltaX = event.clientX - initialMouseX;
+      const deltaY = event.clientY - initialMouseY;
+      draggable.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    }
+  });
+
+  draggable.addEventListener("mouseup", () => {
+    currentFigure = null;
+    draggable.style.cursor = "grab";
+  });
 });
 
 /////////////////////////////////////////////////

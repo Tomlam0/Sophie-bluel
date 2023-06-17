@@ -3,10 +3,11 @@
 const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
 const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
 const galleryEdit = document.querySelector(".gallery-edit"); // On récupère le block edit avec les travaux
+const deleteIcon = document.querySelector(".delete-input"); // On récupère liicone de suppression des travaux
 
 //////////////////////////////////////////////////
 /**
- *       Ouverture et fermeture de la modal
+ *   Ouverture et fermeture de la modal gallery
  */
 //////////////////////////////////////////////////
 
@@ -33,11 +34,9 @@ document.addEventListener("click", function (event) {
 
 ///////////////////////////////////////////////////////////////
 /**
- *        Génération de la galerie dans la modal
+ *    Fonction d'Affichage des travaux dans la modal gallery
  */
 ///////////////////////////////////////////////////////////////
-
-// Fonction d'Affichage des travaux
 
 function editWorks(works) {
   for (let i = 0; i < works.length; i++) {
@@ -51,7 +50,7 @@ function editWorks(works) {
     galleryEditImage.classList.add("draggable"); // on ajoute une class pour la gestion du deplacement futur
 
     const galleryDeleteIcon = document.createElement("i"); // Création de l'icone de supression
-    galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can");
+    galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-input");
 
     const galleryMoveIcon = document.createElement("i"); // Création de l'icone de deplacement
     galleryMoveIcon.classList.add("fa-solid", "fa-arrows-up-down-left-right");
@@ -68,23 +67,56 @@ function editWorks(works) {
   }
 }
 
-// Fonction de Récupération des travaux depuis l'API
+///////////////////////////////////////////////////////////////
+/**
+ *      Fonction de Récupération des travaux depuis l'API
+ */
+///////////////////////////////////////////////////////////////
 
 async function editFetchWorks() {
   try {
     const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
     const works = await response.json(); // Attente de la conversion en JSON
 
-    editWorks(works); // Appel à la fonction (l.39) pour afficher les travaux
+    editWorks(works); // Appel à la fonction pour afficher les travaux
+
+    ///////////////////////////////////////////////////////////////
+    /**
+     *      Fonction de Suppression des travaux depuis l'API
+     */
+    ///////////////////////////////////////////////////////////////
+
+    // deleteIcon.addEventListener("click", async (e) => {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+
+    //   const deleteWorkId = works.id;
+    //   const token = localStorage.getItem("token"); // On récupère le token du localStorage
+
+    //   let response = await fetch(
+    //     `http://localhost:5678/api/works/${deleteWorkId}`,
+    //     {
+    //       method: "DELETE",
+    //       headers: {
+    //         accept: "*/*",
+    //         Authorization: `Bearer ${"token"}`,
+    //       },
+    //     }
+    //   );
+    //   if (response.ok) {
+    //     return false;
+    //     // if HTTP-status is 200-299
+    //     //alert("Photo supprimé avec succes");
+    //   } else {
+    //     alert("Echec de suppression");
+    //   }
+    // });
   } catch (error) {
-    throw new Error(
-      "Une erreur s'est produite lors de la récupération des travaux :",
-      error
-    );
+    throw new Error("Une erreur s'est produite", error);
   }
 }
 
-// Appel de la fonction de Récupération des travaux depuis l'API (l.39)
+// Appel de la fonction de Récupération des travaux depuis l'API
 editFetchWorks();
 
 /////////////////////////////////////////////////
@@ -92,62 +124,3 @@ editFetchWorks();
  *          Déplacement des travaux
  */
 /////////////////////////////////////////////////
-
-const draggables = document.querySelectorAll(".draggable");
-let currentFigure = null;
-let initialMouseX = 0;
-let initialMouseY = 0;
-
-draggables.forEach((draggable) => {
-  draggable.addEventListener("mousedown", (event) => {
-    currentFigure = draggable;
-    initialMouseX = event.clientX - draggable.offsetLeft;
-    initialMouseY = event.clientY - draggable.offsetTop;
-    draggable.style.cursor = "grabbing";
-  });
-
-  draggable.addEventListener("mousemove", (event) => {
-    if (currentFigure === draggable) {
-      const deltaX = event.clientX - initialMouseX;
-      const deltaY = event.clientY - initialMouseY;
-      draggable.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    }
-  });
-
-  draggable.addEventListener("mouseup", () => {
-    currentFigure = null;
-    draggable.style.cursor = "grab";
-  });
-});
-
-/////////////////////////////////////////////////
-/**
- *            Suppression des travaux
- */
-/////////////////////////////////////////////////
-
-// iconeElement.addEventListener("click", async (e) => {
-//   e.preventDefault();
-//   e.stopPropagation();
-//   const iconeElement = article.id;
-//   let monToken = localStorage.getItem("token");
-//   console.log(iconeElement);
-//   let response = await fetch(
-//     `http://localhost:5678/api/works/${iconeElement}`,
-//     {
-//       method: "DELETE",
-//       headers: {
-//         accept: "*/*",
-//         Authorization: `Bearer ${"token"}`,
-//       },
-//     }
-//   );
-//   if (response.ok) {
-//     return false;
-//     // if HTTP-status is 200-299
-//     //alert("Photo supprimé avec succes");
-//     // obtenir le corps de réponse (la méthode expliquée ci-dessous)
-//   } else {
-//     alert("Echec de suppression");
-//   }
-// });

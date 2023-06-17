@@ -60,15 +60,27 @@
   /* -50px correspond au decallage pour l'animation */
   transform: translate(-50%, calc(-50% - 50px));
 
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out;
+  transition: transform 0.4s ease-out;
 }
+
+/* ============================
+        MODAL ADD WORK
+   ============================ */
+.modal-add-work {
+  display: none; /* S'active dans le js lors du click sur Ajouter une photo */
+}
+/* ============================
+        FIN MODAL ADD WORK
+   ============================ */
 
 /* selecteur qui permet uniquement l'animation */
 .modal-container.active .modal {
   opacity: 1; /* Quand le container est en active, l'overlay retrouve son opacité avec une transition */
   /* le translate est remis aux paramètres d'origine pour permettre le retour de la transition */
   transform: translate(-50%, -50%);
-  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out;
+  transition: transform 0.4s 0.2s ease-out;
 }
 
 /* Desactive le visuel de la scrollbar */
@@ -183,6 +195,75 @@
 }
 
 /* ============================
+         MODAL ADD WORK
+   ============================ */
+
+.modal-add-work .fa-arrow-left {
+  position: absolute;
+  cursor: pointer;
+
+  top: 30px;
+  left: 35px;
+
+  font-size: 20px;
+}
+
+.modal-add-work .fa-arrow-left:hover {
+  color: var(--delete-text-color);
+
+  transition: 200ms ease-in-out;
+}
+
+.modal-add-work .picture-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 420px;
+  height: 170px;
+
+  border-radius: 3px;
+
+  margin: 36px 15% 30px;
+
+  background-color: var(--add-picture-bg-color);
+}
+
+.modal-add-work .picture-section .fa-image {
+  font-size: 55px;
+  text-align: center;
+
+  margin-top: 20px;
+
+  color: var(--add-picture-button-bg-color);
+}
+
+.modal-add-work .picture-section button {
+  font-size: 14px;
+
+  color: var(--add-picture-button-text-color);
+  background-color: var(--add-picture-button-bg-color);
+
+  margin: 21px auto 7px auto;
+  width: 173px;
+  height: 37px;
+
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-radius: 60px;
+  border: none;
+
+  cursor: pointer;
+}
+
+.modal-add-work .picture-section p {
+  text-align: center;
+  font-size: 10px;
+
+  margin-bottom: 19px;
+}
+
+/* ============================
           BUTTONS ZONE
    ============================ */
 
@@ -192,7 +273,8 @@
   justify-content: center;
 }
 
-.modal .add-work-button {
+.modal .add-work-button,
+.modal .validate-button {
   font-family: "Syne";
   font-weight: 700;
   font-size: 14px !important;
@@ -209,6 +291,10 @@
   border: none;
 
   cursor: pointer;
+}
+
+.modal .validate-button {
+  background-color: var(--hover-validate-btn-color);
 }
 
 .modal .add-work-button:hover {

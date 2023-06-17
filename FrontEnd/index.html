@@ -21,31 +21,57 @@
 	<script src="gallery.js" defer></script>
 	<script src="homepage-edit.js" defer></script>
 	<script src="modal-gallery.js" defer></script>
+	<script src="modal-add-work.js" defer></script>
 
 </head>
 
 <body>
 
-	<!-- Modal Gallerie masqué dans style.css-->
+	<!-- Modal masquée dans style.css-->
 	<div class="modal-container">
 
 		<div class="overlay modal-trigger">
 
+			<!-- Modal Galery -->
 			<div class="modal" role="dialog" aria-labelledby="modalTitle">
 				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
 				<h3 id="modalTitle">Galerie photo</h3>
 				<div class="gallery-edit">
 					<!-- Contenu fetch API dans modal-gallery.js -->
 				</div>
+
 				<hr>
+
 				<div class="button-zone">
 					<button class="add-work-button">Ajouter une photo</button>
 					<p class="delete-work">Supprimer la galerie</p>
 				</div>
 			</div>
+			<!-- Fin de Modal Galery -->
+
+			<!-- Modal Add Work -->
+			<div class="modal modal-add-work" role="dialog" aria-labelledby="modalTitle">
+				<i class="fa-solid fa-arrow-left" aria-labelledby="returnBack"></i>
+				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
+				<h3 id="modalTitle">Ajout photo</h3>
+				<div class="picture-section">
+					<i class="fa-regular fa-image"></i>
+					<button class="add-picture">+ Ajouter photo</button>
+					<p>jpg, png : 4mo max</p>
+				</div>
+
+				<hr>
+
+				<div class="button-zone">
+					<button class="validate-button">Valider</button>
+				</div>
+			</div>
+			<!-- Fin de Add Work -->
 
 		</div>
 	</div>
+
+
 
 	<!-- Bandeau mode édition masqué dans style.css -->
 	<div class="edit-section">

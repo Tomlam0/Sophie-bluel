@@ -22,10 +22,14 @@
 
   --add-picture-button-text-color: rgba(48, 102, 133, 1);
 
+  --form-input-text-color: #444444;
+
   /* Buttons */
   --hover-btn-color: rgba(14, 47, 40, 1);
   --grey-validate-btn-color: rgba(167, 167, 167, 1);
   --add-picture-button-bg-color: rgba(203, 214, 220, 1);
+
+  --arrow-categories-color: #6c6c6c;
 }
 
 /* ============================
@@ -422,22 +426,6 @@ footer nav li {
    ============== */
 
 @media (min-width: 320px) and (max-width: 768px) {
-  /* EDIT SECTION */
-
-  .edit-section {
-    flex-direction: column;
-    height: 130px;
-  }
-
-  .edit-section .edit-mode {
-    justify-content: center;
-  }
-
-  .edit-section .edit-button {
-    justify-content: center;
-    margin-top: 15px;
-  }
-
   /* HEADER */
 
   header {
@@ -484,31 +472,8 @@ footer nav li {
     text-align: center;
   }
 
-  /* Bouton modifier photo */
-  .modif-photo {
-    justify-content: center;
-    margin-top: 20px;
-
-    font-size: 16px;
-  }
-
   #introduction article {
     width: 75%;
-  }
-
-  /* Modifier projet */
-  .section-projets {
-    flex-direction: column;
-    margin-top: 70px;
-  }
-
-  .modif-projets {
-    justify-content: center;
-    position: inherit;
-    margin-top: 25px;
-    margin-left: 0;
-
-    font-size: 16px;
   }
 
   /* FILTERS */

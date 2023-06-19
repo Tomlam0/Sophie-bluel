@@ -12,6 +12,13 @@
   margin: 42px 15%;
 }
 
+.modal-gallery h3 {
+  text-align: center;
+  margin-top: 68px;
+
+  font-size: 26px;
+}
+
 .gallery-edit figure {
   position: relative; /* Pour permettre aux icones d'être en position absolue */
   padding-top: 4px;

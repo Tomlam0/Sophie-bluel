@@ -95,3 +95,57 @@
 .modif-projets .fa-pen-to-square {
   font-size: 18px;
 }
+
+/* ============================
+          MEDIA QUERIES  
+   ============================ */
+
+/* ==============
+       MOBILE
+   ============== */
+
+@media (min-width: 320px) and (max-width: 768px) {
+  /*Bandeau Edit */
+
+  .edit-section {
+    flex-direction: column;
+    height: 130px;
+  }
+
+  .edit-section .edit-mode {
+    justify-content: center;
+  }
+
+  .edit-section .edit-button {
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .edit-section .edit-button div {
+    margin: 0;
+  }
+}
+
+/* Bouton modifier photo */
+.modif-photo {
+  justify-content: center;
+  margin-top: 20px;
+
+  font-size: 16px;
+}
+
+/* Modifier projet */
+
+.section-projets {
+  flex-direction: column;
+  margin-top: 70px;
+}
+
+.modif-projets {
+  justify-content: center;
+  position: inherit;
+  margin-top: 25px;
+  margin-left: 0;
+
+  font-size: 16px;
+}

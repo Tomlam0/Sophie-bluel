@@ -6,58 +6,18 @@
 
 .modal-add-work {
   display: none; /* S'active dans le js lors du click sur Ajouter une photo */
+
+  height: 670px;
 }
 
-.modal-add-work .picture-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 420px;
-  height: 170px;
-
-  border-radius: 3px;
-
-  margin: 36px 15% 30px;
-
-  background-color: var(--add-picture-bg-color);
-}
-
-.modal-add-work .picture-section button {
-  font-size: 14px;
-
-  color: var(--add-picture-button-text-color);
-  background-color: var(--add-picture-button-bg-color);
-
-  margin: 21px auto 7px auto;
-  width: 173px;
-  height: 37px;
-
+.modal-add-work h3 {
   text-align: center;
-  letter-spacing: 0.5px;
-  border-radius: 60px;
-  border: none;
+  margin-top: 55px;
 
-  cursor: pointer;
-}
-
-.modal-add-work .picture-section p {
-  text-align: center;
-  font-size: 10px;
-
-  margin-bottom: 19px;
+  font-size: 26px;
 }
 
 /* ----- Icons Zone ----- */
-
-.modal-add-work .picture-section .fa-image {
-  font-size: 55px;
-  text-align: center;
-
-  margin-top: 20px;
-
-  color: var(--add-picture-button-bg-color);
-}
 
 .modal-add-work .fa-arrow-left {
   position: absolute;
@@ -76,24 +36,172 @@
 }
 
 /* ============================
-          BUTTONS ZONE
+              FORM
    ============================ */
 
-.modal .validate-button {
+/* Picture Section */
+
+.modal-add-work .add-work-form {
+  display: flex;
+  flex-direction: column;
+
+  position: relative; /* Uniquement pour la position de la flèche catégorie */
+
+  margin: 0 15% 40px 15%;
+}
+
+.modal-add-work .picture-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 170px;
+
+  border-radius: 3px;
+
+  margin: 36px 0 30px;
+
+  background-color: var(--add-picture-bg-color);
+}
+
+/* icone image */
+.modal-add-work .picture-section .fa-image {
+  font-size: 55px;
+  text-align: center;
+
+  margin-top: 20px;
+
+  color: var(--add-picture-button-bg-color);
+}
+
+/* Partie concernant l'input qui permet d'ajouter une photo */
+
+.modal-add-work .picture-section .add-picture {
+  position: relative; /* Permet  a l'input masqué d'être en position absolue*/
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: var(--add-picture-button-text-color);
+  background-color: var(--add-picture-button-bg-color);
+
+  margin: 21px auto 7px auto;
+  width: 173px;
+  height: 37px;
+
+  letter-spacing: 0.5px;
+  border-radius: 60px;
+  border: none;
+
+  cursor: pointer;
+}
+
+/* l'input est masqué, il ne sert qu'a clicker, le visuel est géré par l'input au dessus */
+.modal-add-work .picture-section input[type="file"] {
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal-add-work .picture-section .add-picture:hover {
+  color: var(--dark-bg-text-color);
+}
+/* Fin de la partie concernant l'input qui permet d'ajouter une photo  */
+
+.modal-add-work .picture-section p {
+  text-align: center;
+  font-size: 10px;
+
+  margin-bottom: 19px;
+}
+
+/* Buttons Section */
+
+.modal-add-work label {
+  margin-bottom: 10px;
+}
+
+.modal-add-work input {
+  margin-bottom: 21px;
+
+  color: var(--form-input-text-color);
+}
+
+.modal-add-work input,
+.modal-add-work select {
+  height: 50px;
+  font-size: 1.2em;
+
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+
+  padding-left: 10px;
+}
+
+.modal-add-work input[type="text"]:focus,
+.modal-add-work select:focus {
+  outline: 1px solid var(--primary-color);
+}
+
+/* Style de la flèche de l'input catégories */
+
+#categories {
+  appearance: none; /* Désactive la flèche par défaut */
+
+  color: var(--form-input-text-color);
+}
+
+/* Recalibrage de la flèche */
+.modal-add-work .fa-angle-down {
+  font-size: 17 px;
+  color: var(--arrow-categories-color);
+
+  position: absolute;
+  top: 70%;
+  right: 30px;
+  transform: translateY(-50%);
+}
+
+.modal-add-work hr {
+  margin: 0 2%;
+  margin-top: 47px;
+}
+
+.modal-add-work .validate-button {
   font-family: "Syne";
   font-weight: 700;
-  font-size: 14px !important;
+  font-size: 14px;
 
-  color: white;
+  color: var(--dark-bg-text-color);
   background-color: var(--grey-validate-btn-color);
 
   margin: 2em auto;
   width: 237px;
-  height: 37px !important;
+  height: 37px;
 
   text-align: center;
   border-radius: 60px;
   border: none;
 
   cursor: pointer;
+}
+
+/* ============================
+          MEDIA QUERIES  
+   ============================ */
+
+/* ==============
+       MOBILE
+   ============== */
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .modal-add-work .validate-button {
+    width: 75%;
+  }
 }

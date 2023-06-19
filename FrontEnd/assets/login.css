@@ -26,8 +26,7 @@ header .active {
   display: flex;
   flex-direction: column;
 
-  margin: auto;
-  width: 380px;
+  margin: 0 30%;
 
   margin-top: 10px;
 }
@@ -68,7 +67,7 @@ header .active {
 }
 
 .password-container input {
-  width: 365px;
+  width: 96%;
 }
 
 .password-icon {
@@ -111,6 +110,10 @@ header .active {
 @media (min-width: 320px) and (max-width: 768px) {
   #login {
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
+  }
+
+  #login form {
+    margin: 0 20%;
   }
 }

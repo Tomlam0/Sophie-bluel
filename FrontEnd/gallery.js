@@ -85,7 +85,7 @@ async function fetchWorks() {
           (work) => work.categoryId === element.id
         );
 
-        displayWorks(filteredWorks); // Appel de la fonction (l.8) avec comme paramètre la variable filtrante
+        displayWorks(filteredWorks); // Appel de la fonction avec comme paramètre la variable filtrante
       });
     });
 

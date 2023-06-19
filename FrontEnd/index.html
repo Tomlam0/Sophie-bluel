@@ -37,7 +37,7 @@
 		<div class="overlay modal-trigger">
 
 			<!-- Modal Galery -->
-			<div class="modal" role="dialog" aria-labelledby="modalTitle">
+			<div class="modal modal-gallery" role="dialog" aria-labelledby="modalTitle">
 				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
 				<h3 id="modalTitle">Galerie photo</h3>
 				<div class="gallery-edit">
@@ -58,17 +58,41 @@
 				<i class="fa-solid fa-arrow-left" aria-labelledby="returnBack"></i>
 				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
 				<h3 id="modalTitle">Ajout photo</h3>
-				<div class="picture-section">
-					<i class="fa-regular fa-image"></i>
-					<button class="add-picture">+ Ajouter photo</button>
-					<p>jpg, png : 4mo max</p>
-				</div>
 
-				<hr>
 
-				<div class="button-zone">
-					<button class="validate-button">Valider</button>
-				</div>
+				<form class="add-work-form">
+
+					<div class="picture-section">
+						<i class="fa-regular fa-image"></i>
+						<!-- La dic qui englobe l'input ici sert uniquement a générer le visuel pendant que l'input sera masqué -->
+						<!-- Empeche la box "choisis un fichier" d'être affichée -->
+						<label class="add-picture">
+							<span>+ Ajouter photo</span>
+							<input type="file" accept=".jpg, .jpeg, .png" maxlength="4194304">
+							<!-- 4194304 correspond à 4 Mo (4 × 1024 × 1024) -->
+						</label>
+						<p>jpg, png : 4mo max</p>
+					</div>
+
+
+					<label for="title">Titre</label>
+					<input type="text" name="title" id="title" required>
+
+					<label for="categories">Catégories</label>
+					<!-- Icone pour remplacer la flèche générée par le navigateur -->
+					<i class="fa-solid fa-angle-down"></i>
+					<select name="categories" id="categories">
+						<!-- Cette option permettent d'avoir le champ vide de base -->
+						<option value="" disabled selected hidden></option>
+						<!-- Cette option permet de faire comprendre que les champ sont à sélectionner -->
+						<option value="" disabled>Sélectionnez une catégorie</option>
+					</select>
+
+					<hr>
+
+					<input type="submit" class="validate-button" id="addWorkButton" value="Valider">
+				</form>
+
 			</div>
 			<!-- Fin de Add Work -->
 
@@ -169,11 +193,11 @@
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">
 				<label for="name">Nom</label>
-				<input type="text" name="name" id="name">
+				<input type="text" name="name" id="name" required>
 				<label for="email">E-mail</label>
-				<input type="email" name="email" id="email">
+				<input type="email" name="email" id="email" required>
 				<label for="message">Message</label>
-				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<textarea name="message" id="message" cols="30" rows="10" required></textarea>
 				<input type="button" value="Envoyer">
 			</form>
 		</section>

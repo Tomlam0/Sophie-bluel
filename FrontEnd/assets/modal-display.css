@@ -1,0 +1,108 @@
+/* ============================
+          MODAL DISPLAY
+   ============================ */
+
+/* Concerne la disposition globale des modals */
+
+.modal-container {
+  visibility: hidden; /* S'active dans le js lors du click sur modifier */
+  position: fixed;
+
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  transition: visibility 0.4s;
+}
+
+/* La classe .active est générée par le js */
+.modal-container.active {
+  visibility: visible; /* S'active dans le js lors du click sur modifier */
+}
+
+.overlay {
+  opacity: 0; /* Pour permettre de gerer l'animation de la transition */
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  transition: opacity 0.4s 0.2s ease-out;
+}
+
+/* selecteur qui permet uniquement l'animation */
+.modal-container.active .overlay {
+  opacity: 1; /* Quand le container est en active, l'overlay retrouve son opacité avec une transition */
+  transition: opacity 0.4s ease-out;
+}
+
+.modal {
+  opacity: 0; /* Pour permettre de gerer l'animation de la transition*/
+
+  position: absolute;
+
+  width: 60vw;
+  height: 730px;
+
+  min-width: 300px;
+  max-width: 630px;
+
+  top: 50%;
+  left: 50%;
+
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+
+  overflow: scroll;
+
+  /* Permet le centrage de la modal dans le container */
+  /* -50px correspond au decallage pour l'animation */
+  transform: translate(-50%, calc(-50% - 50px));
+
+  transition: opacity 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+}
+
+/* selecteur qui permet uniquement l'animation */
+.modal-container.active .modal {
+  opacity: 1; /* Quand le container est en active, l'overlay retrouve son opacité avec une transition */
+  /* le translate est remis aux paramètres d'origine pour permettre le retour de la transition */
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out;
+  transition: transform 0.4s 0.2s ease-out;
+}
+
+/* Desactive le visuel de la scrollbar */
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-container .fa-xmark {
+  position: absolute;
+  cursor: pointer;
+
+  top: 30px;
+  right: 35px;
+
+  font-size: 20px;
+}
+
+.modal-container .fa-xmark:hover {
+  color: var(--delete-text-color);
+
+  transition: 200ms ease-in-out;
+}
+
+.modal-container h3 {
+  text-align: center;
+  margin-top: 68px;
+
+  font-size: 26px;
+}
+
+.modal-container hr {
+  margin: 0 15%;
+}

@@ -1,0 +1,99 @@
+/* ============================
+          MODAL ADD WORK
+   ============================ */
+
+/* Concerne la disposition de la modal add work uniquement */
+
+.modal-add-work {
+  display: none; /* S'active dans le js lors du click sur Ajouter une photo */
+}
+
+.modal-add-work .picture-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 420px;
+  height: 170px;
+
+  border-radius: 3px;
+
+  margin: 36px 15% 30px;
+
+  background-color: var(--add-picture-bg-color);
+}
+
+.modal-add-work .picture-section button {
+  font-size: 14px;
+
+  color: var(--add-picture-button-text-color);
+  background-color: var(--add-picture-button-bg-color);
+
+  margin: 21px auto 7px auto;
+  width: 173px;
+  height: 37px;
+
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-radius: 60px;
+  border: none;
+
+  cursor: pointer;
+}
+
+.modal-add-work .picture-section p {
+  text-align: center;
+  font-size: 10px;
+
+  margin-bottom: 19px;
+}
+
+/* ----- Icons Zone ----- */
+
+.modal-add-work .picture-section .fa-image {
+  font-size: 55px;
+  text-align: center;
+
+  margin-top: 20px;
+
+  color: var(--add-picture-button-bg-color);
+}
+
+.modal-add-work .fa-arrow-left {
+  position: absolute;
+  cursor: pointer;
+
+  top: 30px;
+  left: 35px;
+
+  font-size: 20px;
+}
+
+.modal-add-work .fa-arrow-left:hover {
+  color: var(--delete-text-color);
+
+  transition: 200ms ease-in-out;
+}
+
+/* ============================
+          BUTTONS ZONE
+   ============================ */
+
+.modal .validate-button {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px !important;
+
+  color: white;
+  background-color: var(--grey-validate-btn-color);
+
+  margin: 2em auto;
+  width: 237px;
+  height: 37px !important;
+
+  text-align: center;
+  border-radius: 60px;
+  border: none;
+
+  cursor: pointer;
+}

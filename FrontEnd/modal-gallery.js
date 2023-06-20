@@ -1,4 +1,5 @@
 //////////////////////////////////////////////////
+// Délcaration des variables DOM
 
 const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
 const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
@@ -18,6 +19,16 @@ function openModal() {
 // Fonction qui ferme la modal
 function closeModal() {
   modalContainer.classList.remove("active");
+
+  // Désactive l'affichage du message d'erreur dans la modal-add-work concernant la taille en mo s'il a été appelé
+  errorMessageSize.style.display = "none"; // (Variable déclarée dans modal-add-work.js)
+
+  // Efface également la photo chargée dans la modal-add-work
+  fileDisplay.style.display = "none";
+  // Puis réactive tout les éléments pour recharger une nouvelle photo
+  pictureIcon.style.display = "block"; // Désactive l'icon picture
+  addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
+  restrictionsText.style.display = "block"; // Désactive le texte de restrictions
 }
 
 // Ajoute un gestionnaire d'événement pour ouvrir la modal lorsque clique sur un bouton avec la classe "modal-trigger"

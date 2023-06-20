@@ -1,8 +1,5 @@
 ///////////////////////////////////////////////////////////////
-/**
- *  Affichage des éléments d'edit de la homepage si login ok
- */
-///////////////////////////////////////////////////////////////
+// Délcaration des variables DOM
 
 const token = localStorage.getItem("token"); // On récupère le token du localStorage
 
@@ -16,7 +13,13 @@ const modifProjetsDisplay = document.querySelector(".modif-projets"); // On va c
 
 const filterDisplay = document.querySelector(".filtres"); // On va chercher l'élément filtres dans le DOM
 
-// Le token existe dans le localStorage
+///////////////////////////////////////////////////////////////
+/**
+ *  Affichage des éléments d'edit de la homepage si login ok
+ */
+///////////////////////////////////////////////////////////////
+
+// Si le token existe dans le localStorage
 if (token !== null) {
   editDisplay.style.display = "flex"; // on active la section edit
 

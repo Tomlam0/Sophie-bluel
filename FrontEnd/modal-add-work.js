@@ -7,9 +7,18 @@ const returnBack = document.querySelector(".fa-arrow-left"); // On récupère l'
 
 const categoryInput = document.getElementById("categories"); // On récupère la selection des catégories
 
+const inputFile = document.querySelector("input[type=file]"); // On récupère l'input pour ajouter une photo
+const fileDisplay = document.getElementById("fileDisplay"); // On récupère l'image affiché ensuite à sa place
+
+const pictureIcon = document.querySelector(".fa-image"); // On récupère l'icon de l'image
+const addPictureButton = document.querySelector(".add-picture"); // On récupère le bouton "ajouter photo"
+const restrictionsText = document.querySelector(".picture-section p"); // On récupère le texte de restrictions
+
+const errorMessageSize = document.querySelector(".error-message-size"); // On récupère le bloc du message d'erreur
+
 //////////////////////////////////////////////////
 /**
- *       Ouverture de la modal add work
+ *   Ouverture et fermeture de la modal add work
  */
 //////////////////////////////////////////////////
 
@@ -20,22 +29,59 @@ addWorkButton.addEventListener("click", () => {
   modalGallery.style.display = "none";
 });
 
-//////////////////////////////////////////////////
-/**
- *        Retour a la modal gallery
- */
-//////////////////////////////////////////////////
-
 // Retourne en arriere lors du click sur l'icone fleche
 returnBack.addEventListener("click", () => {
   modalAddWork.style.display = "none";
   // Réactive au passage la modal gallery
   modalGallery.style.display = "block";
+
+  // Désactive l'affichage du message d'erreur dans la modal-add-work concernant la taille en mo s'il a été appelé
+  errorMessageSize.style.display = "none"; // (Variable déclarée dans modal-add-work.js)
+
+  // Efface également la photo chargée dans la modal-add-work
+  fileDisplay.style.display = "none";
+  // Puis réactive tout les éléments pour recharger une nouvelle photo
+  pictureIcon.style.display = "block"; // Désactive l'icon picture
+  addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
+  restrictionsText.style.display = "block"; // Désactive le texte de restrictions
+});
+
+///////////////////////////////////////////////////////////
+/**
+ *  Afficher l'image chargée à la place de "Ajouter photo"
+ */
+///////////////////////////////////////////////////////////
+
+inputFile.addEventListener("change", (event) => {
+  const file = event.target.files[0]; // Objet de type FileList dont on récupère le premier (0)
+
+  // Vérifie si la taille du fichier dépasse la limite de 4 Mo (en octets)
+  if (file.size > 4194304) {
+    errorMessageSize.style.display = "block"; // Active l'affichage du message d'erreur
+
+    inputFile.value = ""; // Réinitialise la valeur de l'input file pour effacer le fichier sélectionné
+  } else {
+    errorMessageSize.style.display = "none"; // Désactive l'affichage du message d'erreur s'il a été appelé
+
+    fileDisplay.style.display = "block"; // Active l'affichage de l'image chargée
+
+    pictureIcon.style.display = "none"; // Désactive l'icon picture
+    addPictureButton.style.display = "none"; // Désactive le bouton ajouter une photo
+    restrictionsText.style.display = "none"; // Désactive le texte de restrictions
+
+    const reader = new FileReader();
+
+    reader.onload = (readerEvent) => {
+      fileDisplay.src = readerEvent.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
 });
 
 //////////////////////////////////////////////////
 /**
- *        Choix de la catégorie dynamique
+ *      Choix de la catégorie "dynamique"
  */
 //////////////////////////////////////////////////
 

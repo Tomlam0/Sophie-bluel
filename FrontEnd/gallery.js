@@ -1,17 +1,22 @@
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+// Délcaration des variables DOM
+
+const gallery = document.querySelector(".gallery"); // On va chercher la galerie dans le DOM
+const baliseFiltre = document.querySelector(".filtres"); // On va chercher la balise des filtres
+const btnTous = document.querySelector(".btn-tous"); // On va chercher le filtre "tous"
+
+////////////////////////////////////////////////////////////////
 /**
- * Fonction d'Affichage des travaux sur la homepage du site
+ *   Fonction d'Affichage des travaux sur la homepage du site
  */
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
-// Le paramètre works concerne la variable qui fetch les données de l'API (l.41)
+// Le paramètre works concerne la variable qui fetch les données de l'API
 function displayWorks(works) {
-  const gallery = document.querySelector(".gallery");
-
   gallery.innerHTML = ""; // On efface le contenu actuel de la galerie
 
   for (let i = 0; i < works.length; i++) {
-    const work = works[i]; 
+    const work = works[i];
 
     const galleryFigure = document.createElement("figure"); // Création de la balise dédiée aux figures
 
@@ -26,22 +31,21 @@ function displayWorks(works) {
     gallery.appendChild(galleryFigure);
     galleryFigure.appendChild(galleryImage);
     galleryFigure.appendChild(galleryFigcaption);
-
   }
 }
 
-/////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 /**
- * Fonction de Récupération des travaux depuis l'API
+ *   Fonction de Récupération des travaux depuis l'API
  */
-/////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 async function fetchWorks() {
   try {
     const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
     const works = await response.json(); // Attente de la conversion en JSON
 
-    displayWorks(works); // Appel à la fonction (l.8) pour afficher les travaux
+    displayWorks(works); // Appel à la fonction pour afficher les travaux
 
     /////////////////////////////////////////////////
     /**
@@ -49,8 +53,7 @@ async function fetchWorks() {
      */
     /////////////////////////////////////////////////
 
-    // Rattachement et Ecoute du bouton "Tous"
-    const btnTous = document.querySelector(".btn-tous");
+    // Ecoute du bouton "Tous"
     btnTous.addEventListener("click", () => {
       displayWorks(works); // Fait a nouveau appel à la fonction pour afficher les travaux
     });
@@ -58,8 +61,6 @@ async function fetchWorks() {
     // On Fetch la section "category" de l'API cette fois
     const category = await fetch("http://localhost:5678/api/categories"); // Attente de la réponse
     const btnFiltre = await category.json(); // Attente de la conversion en JSON
-
-    let baliseFiltre = document.querySelector(".filtres"); // On va chercher la balise HTML
 
     // La boucle qui va parcourir l'API et créer un nouveau bouton pour chaque catégorie
     btnFiltre.forEach((element) => {

@@ -63,30 +63,39 @@
 				<form class="add-work-form">
 
 					<div class="picture-section">
+						<img id="fileDisplay" src="#" alt="Image affichée">
+						<!-- Cette balise ne s'affiche que lors du chargement de l'image dans l'input=file -->
+
 						<i class="fa-regular fa-image"></i>
-						<!-- La dic qui englobe l'input ici sert uniquement a générer le visuel pendant que l'input sera masqué -->
+
+						<!-- Le label qui englobe l'input ici sert uniquement a générer le visuel pendant que l'input sera masqué -->
 						<!-- Empeche la box "choisis un fichier" d'être affichée -->
 						<label class="add-picture">
 							<span>+ Ajouter photo</span>
-							<input type="file" accept=".jpg, .jpeg, .png" maxlength="4194304">
-							<!-- 4194304 correspond à 4 Mo (4 × 1024 × 1024) -->
+							<input type="file" accept=".jpg, .jpeg, .png">
 						</label>
+
 						<p>jpg, png : 4mo max</p>
+
 					</div>
 
+					<!-- Message d'erreur quand le fichierr dépasse 4mo-->
+					<p class="error-message-size">La taille du fichier dépasse la limite de 4 Mo</p>
 
 					<label for="title">Titre</label>
 					<input type="text" name="title" id="title" required>
 
-					<label for="categories">Catégories</label>
-					<!-- Icone pour remplacer la flèche générée par le navigateur -->
-					<i class="fa-solid fa-angle-down"></i>
-					<select name="categories" id="categories">
-						<!-- Cette option permettent d'avoir le champ vide de base -->
-						<option value="" disabled selected hidden></option>
-						<!-- Cette option permet de faire comprendre que les champ sont à sélectionner -->
-						<option value="" disabled>Sélectionnez une catégorie</option>
-					</select>
+					<div class="password-section">
+						<label for="categories">Catégories</label>
+						<!-- Icone pour remplacer la flèche générée par le navigateur -->
+						<i class="fa-solid fa-angle-down"></i>
+						<select name="categories" id="categories">
+							<!-- Cette option permettent d'avoir le champ vide de base -->
+							<option value="" disabled selected hidden></option>
+							<!-- Cette option permet de faire comprendre que les champ sont à sélectionner -->
+							<option value="" disabled>Sélectionnez une catégorie</option>
+						</select>
+					</div>
 
 					<hr>
 

@@ -1,12 +1,21 @@
 /////////////////////////////////////////////////
+// Délcaration des variables DOM
+
+const loginForm = document.getElementById("login"); // On va récupérer la section form en entier dans le DOM
+
+const errorMessage = document.querySelector(".error-message"); // On va récupérer le message d'erreur
+
+const passwordField = document.getElementById("password"); // On va chercher l'input du password dans le DOM
+const eye = document.querySelector(".fa-eye"); // On va chercher les éléments icone dans le DOM
+const eyeOff = document.querySelector(".fa-eye-slash");
+
+/////////////////////////////////////////////////
 /**
  *      Envoi du formulaire de connexion
  */
 /////////////////////////////////////////////////
 
 // On va utiliser le paramètre submit, c'est donc le formulaire entier qui doit être pris en compte
-let loginForm = document.getElementById("login");
-
 loginForm.addEventListener("submit", (event) => {
   // Désactivation du comportement par défaut du navigateur
   event.preventDefault();
@@ -45,8 +54,6 @@ async function login() {
       window.location.href = "index.html"; // Redirection vers l'accueil
     } else {
       // Si ce n'est pas bon on va afficher un message d'erreur qui avait été mis en display:none
-      let errorMessage = document.querySelector(".error-message"); // On va récupérer le message d'erreur dans le DOM
-
       errorMessage.style.display = "block"; // Afficher le message d'erreur
     }
 
@@ -64,13 +71,6 @@ async function login() {
  *   Affichage / masquage des icones password
  */
 /////////////////////////////////////////////////
-
-// On va chercher l'input du password dans le DOM
-const passwordField = document.getElementById("password");
-
-// On va chercher les éléments icone dans le DOM
-const eye = document.querySelector(".fa-eye");
-const eyeOff = document.querySelector(".fa-eye-slash");
 
 // On va écouter le click sur l'icone qui affiche le password
 eye.addEventListener("click", () => {

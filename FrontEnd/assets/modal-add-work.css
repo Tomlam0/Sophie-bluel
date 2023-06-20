@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 
   height: 170px;
 
@@ -111,7 +112,24 @@
 
 .modal-add-work .picture-section .add-picture:hover {
   color: var(--dark-bg-text-color);
+
+  transition: 0.3s;
 }
+
+/* concerne l'image qui va remplacer l'input une fois qu'elle est chargée  */
+
+.picture-section #fileDisplay {
+  display: none; /* Est activé lors du choix de la photo dans le js */
+  position: absolute; /* Permet à l'image d'être contenue dans le picture-section */
+
+  max-height: 100%; /* l'image ne dépassera jamais du block parent */
+  max-width: 100%;
+
+  left: 0; /* les valeurs a 0 permettent de centrer l'image avec margin auto */
+  right: 0;
+  margin: auto;
+}
+
 /* Fin de la partie concernant l'input qui permet d'ajouter une photo  */
 
 .modal-add-work .picture-section p {
@@ -121,7 +139,18 @@
   margin-bottom: 19px;
 }
 
-/* Buttons Section */
+/* Message d'erreur pour la limite de 4mo généré par login.js */
+.add-work-form .error-message-size {
+  display: none;
+
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* =====================
+      BUTTONS SECTION
+   ===================== */
 
 .modal-add-work label {
   margin-bottom: 10px;
@@ -150,6 +179,12 @@
 }
 
 /* Style de la flèche de l'input catégories */
+
+.password-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
 #categories {
   appearance: none; /* Désactive la flèche par défaut */

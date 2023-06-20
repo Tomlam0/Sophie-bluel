@@ -229,6 +229,8 @@ h2 {
 
 .gallery img {
   width: 100%;
+
+  object-fit: cover;
 }
 
 .gallery figcaption {

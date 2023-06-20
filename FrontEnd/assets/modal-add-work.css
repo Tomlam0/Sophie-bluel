@@ -141,7 +141,7 @@
 
 /* Message d'erreur pour la limite de 4mo généré par login.js */
 .add-work-form .error-message-size {
-  display: none;
+  display: none; /* Passe en "block" quand un fichier de plus de 4mo est sélectionné */
 
   color: var(--secondary-color);
   text-align: center;
@@ -208,6 +208,15 @@
   margin-top: 47px;
 }
 
+/* Message d'erreur quand submit alors qu'un champ est vide */
+.add-work-form .error-message-submit {
+  display: none; /* Passe en "block" quand un champ est vide et que submit est call */
+
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 15px;
+}
+
 .modal-add-work .validate-button {
   font-family: "Syne";
   font-weight: 700;
@@ -225,6 +234,19 @@
   border: none;
 
   cursor: pointer;
+}
+
+.modal-add-work .validate-button:hover {
+  background-color: var(--grey-validate-btn-color);
+}
+
+/* Section avec "true" qui s'active dans .modal-add-work.js quand tout les champs sont remplis */
+.modal-add-work .validate-button.true {
+  background-color: var(--primary-color);
+}
+
+.modal-add-work .validate-button.true:hover {
+  background-color: var(--hover-btn-color);
 }
 
 /* ============================

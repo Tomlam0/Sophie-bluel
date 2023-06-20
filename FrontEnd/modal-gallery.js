@@ -20,8 +20,9 @@ function openModal() {
 function closeModal() {
   modalContainer.classList.remove("active");
 
-  // Désactive l'affichage du message d'erreur dans la modal-add-work concernant la taille en mo s'il a été appelé
-  errorMessageSize.style.display = "none"; // (Variable déclarée dans modal-add-work.js)
+  // Désactive l'affichage des messages d'erreur
+  errorMessageSize.style.display = "none";
+  errorMessageSubmit.style.display = "none";
 
   // Efface également la photo chargée dans la modal-add-work
   fileDisplay.style.display = "none";
@@ -29,6 +30,11 @@ function closeModal() {
   pictureIcon.style.display = "block"; // Désactive l'icon picture
   addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
   restrictionsText.style.display = "block"; // Désactive le texte de restrictions
+
+  // Efface également les valeurs des inputs
+  titleInput.value = "";
+  categoryInput.value = "";
+  validateButton.classList.remove("true");
 }
 
 // Ajoute un gestionnaire d'événement pour ouvrir la modal lorsque clique sur un bouton avec la classe "modal-trigger"
@@ -129,9 +135,3 @@ async function editFetchWorks() {
 
 // Appel de la fonction de Récupération des travaux depuis l'API
 editFetchWorks();
-
-/////////////////////////////////////////////////
-/**
- *          Déplacement des travaux
- */
-/////////////////////////////////////////////////

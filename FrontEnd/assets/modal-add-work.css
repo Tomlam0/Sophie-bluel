@@ -5,34 +5,34 @@
 /* Concerne la disposition de la modal add work uniquement */
 
 .modal-add-work {
-  display: none; /* S'active dans le js lors du click sur Ajouter une photo */
+    display: none; /* S'active dans le js lors du click sur Ajouter une photo */
 
-  height: 670px;
+    height: 670px;
 }
 
 .modal-add-work h3 {
-  text-align: center;
-  margin-top: 55px;
+    text-align: center;
+    margin-top: 55px;
 
-  font-size: 26px;
+    font-size: 26px;
 }
 
 /* ----- Icons Zone ----- */
 
 .modal-add-work .fa-arrow-left {
-  position: absolute;
-  cursor: pointer;
+    position: absolute;
+    cursor: pointer;
 
-  top: 30px;
-  left: 35px;
+    top: 30px;
+    left: 35px;
 
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .modal-add-work .fa-arrow-left:hover {
-  color: var(--delete-text-color);
+    color: var(--delete-text-color);
 
-  transition: 200ms ease-in-out;
+    transition: 200ms ease-in-out;
 }
 
 /* ============================
@@ -42,110 +42,110 @@
 /* Picture Section */
 
 .modal-add-work .add-work-form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  position: relative; /* Uniquement pour la position de la flèche catégorie */
+    position: relative; /* Uniquement pour la position de la flèche catégorie */
 
-  margin: 0 15% 40px 15%;
+    margin: 0 15% 40px 15%;
 }
 
 .modal-add-work .picture-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
 
-  height: 170px;
+    height: 170px;
 
-  border-radius: 3px;
+    border-radius: 3px;
 
-  margin: 36px 0 30px;
+    margin: 36px 0 30px;
 
-  background-color: var(--add-picture-bg-color);
+    background-color: var(--add-picture-bg-color);
 }
 
 /* icone image */
 .modal-add-work .picture-section .fa-image {
-  font-size: 55px;
-  text-align: center;
+    font-size: 55px;
+    text-align: center;
 
-  margin-top: 20px;
+    margin-top: 20px;
 
-  color: var(--add-picture-button-bg-color);
+    color: var(--add-picture-button-bg-color);
 }
 
 /* Partie concernant l'input qui permet d'ajouter une photo */
 
 .modal-add-work .picture-section .add-picture {
-  position: relative; /* Permet  a l'input masqué d'être en position absolue*/
+    position: relative; /* Permet  a l'input masqué d'être en position absolue*/
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  font-size: 13px;
-  font-weight: 700;
+    font-size: 13px;
+    font-weight: 700;
 
-  color: var(--add-picture-button-text-color);
-  background-color: var(--add-picture-button-bg-color);
+    color: var(--add-picture-button-text-color);
+    background-color: var(--add-picture-button-bg-color);
 
-  margin: 21px auto 7px auto;
-  width: 173px;
-  height: 37px;
+    margin: 21px auto 7px auto;
+    width: 173px;
+    height: 37px;
 
-  letter-spacing: 0.5px;
-  border-radius: 60px;
-  border: none;
+    letter-spacing: 0.5px;
+    border-radius: 60px;
+    border: none;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* l'input est masqué, il ne sert qu'a clicker, le visuel est géré par l'input au dessus */
 .modal-add-work .picture-section input[type="file"] {
-  visibility: hidden;
+    visibility: hidden;
 
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .modal-add-work .picture-section .add-picture:hover {
-  color: var(--dark-bg-text-color);
+    color: var(--dark-bg-text-color);
 
-  transition: 0.3s;
+    transition: 0.3s;
 }
 
 /* concerne l'image qui va remplacer l'input une fois qu'elle est chargée  */
 
 .picture-section #fileDisplay {
-  display: none; /* Est activé lors du choix de la photo dans le js */
-  position: absolute; /* Permet à l'image d'être contenue dans le picture-section */
+    display: none; /* Est activé lors du choix de la photo dans le js */
+    position: absolute; /* Permet à l'image d'être contenue dans le picture-section */
 
-  max-height: 100%; /* l'image ne dépassera jamais du block parent */
-  max-width: 100%;
+    max-height: 100%; /* l'image ne dépassera jamais du block parent */
+    max-width: 100%;
 
-  left: 0; /* les valeurs a 0 permettent de centrer l'image avec margin auto */
-  right: 0;
-  margin: auto;
+    left: 0; /* les valeurs a 0 permettent de centrer l'image avec margin auto */
+    right: 0;
+    margin: auto;
 }
 
 /* Fin de la partie concernant l'input qui permet d'ajouter une photo  */
 
 .modal-add-work .picture-section p {
-  text-align: center;
-  font-size: 10px;
+    text-align: center;
+    font-size: 10px;
 
-  margin-bottom: 19px;
+    margin-bottom: 19px;
 }
 
 /* Message d'erreur pour la limite de 4mo généré par login.js */
 .add-work-form .error-message-size {
-  display: none; /* Passe en "block" quand un fichier de plus de 4mo est sélectionné */
+    display: none; /* Passe en "block" quand un fichier de plus de 4mo est sélectionné */
 
-  color: var(--secondary-color);
-  text-align: center;
-  margin-bottom: 15px;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 /* =====================
@@ -153,100 +153,100 @@
    ===================== */
 
 .modal-add-work label {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .modal-add-work input {
-  margin-bottom: 21px;
+    margin-bottom: 21px;
 
-  color: var(--form-input-text-color);
+    color: var(--form-input-text-color);
 }
 
 .modal-add-work input,
 .modal-add-work select {
-  height: 50px;
-  font-size: 1.2em;
+    height: 50px;
+    font-size: 1.2em;
 
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .modal-add-work input[type="text"]:focus,
 .modal-add-work select:focus {
-  outline: 1px solid var(--primary-color);
+    outline: 1px solid var(--primary-color);
 }
 
 /* Style de la flèche de l'input catégories */
 
 .password-section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 #categories {
-  appearance: none; /* Désactive la flèche par défaut */
+    appearance: none; /* Désactive la flèche par défaut */
 
-  color: var(--form-input-text-color);
+    color: var(--form-input-text-color);
 }
 
 /* Recalibrage de la flèche */
 .modal-add-work .fa-angle-down {
-  font-size: 17 px;
-  color: var(--arrow-categories-color);
+    font-size: 17 px;
+    color: var(--arrow-categories-color);
 
-  position: absolute;
-  top: 70%;
-  right: 30px;
-  transform: translateY(-50%);
+    position: absolute;
+    top: 70%;
+    right: 30px;
+    transform: translateY(-50%);
 }
 
 .modal-add-work hr {
-  margin: 0 2%;
-  margin-top: 47px;
+    margin: 0 2%;
+    margin-top: 47px;
 }
 
 /* Message d'erreur quand submit alors qu'un champ est vide */
 .add-work-form .error-message-submit {
-  display: none; /* Passe en "block" quand un champ est vide et que submit est call */
+    display: none; /* Passe en "block" quand un champ est vide et que submit est call */
 
-  color: var(--secondary-color);
-  text-align: center;
-  margin-top: 15px;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-top: 15px;
 }
 
 .modal-add-work .validate-button {
-  font-family: "Syne";
-  font-weight: 700;
-  font-size: 14px;
+    font-family: "Syne";
+    font-weight: 700;
+    font-size: 14px;
 
-  color: var(--dark-bg-text-color);
-  background-color: var(--grey-validate-btn-color);
+    color: var(--dark-bg-text-color);
+    background-color: var(--grey-validate-btn-color);
 
-  margin: 2em auto;
-  width: 237px;
-  height: 37px;
+    margin: 2em auto;
+    width: 237px;
+    height: 37px;
 
-  text-align: center;
-  border-radius: 60px;
-  border: none;
+    text-align: center;
+    border-radius: 60px;
+    border: none;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .modal-add-work .validate-button:hover {
-  background-color: var(--grey-validate-btn-color);
+    background-color: var(--grey-validate-btn-color);
 }
 
 /* Section avec "true" qui s'active dans .modal-add-work.js quand tout les champs sont remplis */
 .modal-add-work .validate-button.true {
-  background-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 .modal-add-work .validate-button.true:hover {
-  background-color: var(--hover-btn-color);
+    background-color: var(--hover-btn-color);
 }
 
 /* ============================
@@ -258,7 +258,7 @@
    ============== */
 
 @media (min-width: 320px) and (max-width: 768px) {
-  .modal-add-work .validate-button {
-    width: 75%;
-  }
+    .modal-add-work .validate-button {
+        width: 75%;
+    }
 }

@@ -29,32 +29,34 @@ const titleInput = document.getElementById("title"); // On récupère la selecti
 
 // Ouvre la modal lorsque clique sur Ajouter Photo
 addWorkButton.addEventListener("click", () => {
-  modalAddWork.style.display = "block";
-  // Désactive au passage la modal gallery
-  modalGallery.style.display = "none";
+    modalAddWork.style.display = "block";
+    // Désactive au passage la modal gallery
+    modalGallery.style.display = "none";
 });
 
 // Retourne en arriere lors du click sur l'icone fleche
 returnBack.addEventListener("click", () => {
-  modalAddWork.style.display = "none";
-  // Réactive au passage la modal gallery
-  modalGallery.style.display = "block";
+    modalAddWork.style.display = "none";
 
-  // Désactive l'affichage des messages d'erreur
-  errorMessageSize.style.display = "none"; // (Variable déclarée dans modal-add-work.js)
-  errorMessageSubmit.style.display = "none";
+    // Réactive au passage la modal gallery
+    modalGallery.style.display = "block";
 
-  // Efface également la photo chargée dans la modal-add-work
-  fileDisplay.style.display = "none";
-  // Puis réactive tout les éléments pour recharger une nouvelle photo
-  pictureIcon.style.display = "block"; // Désactive l'icon picture
-  addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
-  restrictionsText.style.display = "block"; // Désactive le texte de restrictions
+    // Désactive l'affichage des messages d'erreur
+    errorMessageSize.style.display = "none"; // (Variable déclarée dans modal-add-work.js)
+    errorMessageSubmit.style.display = "none";
 
-  // Efface également les valeurs des inputs
-  titleInput.value = "";
-  categoryInput.value = "";
-  validateButton.classList.remove("true");
+    // Efface également la photo chargée dans la modal-add-work
+    fileDisplay.style.display = "none";
+
+    // Puis réactive tout les éléments pour recharger une nouvelle photo
+    pictureIcon.style.display = "block"; // Désactive l'icon picture
+    addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
+    restrictionsText.style.display = "block"; // Désactive le texte de restrictions
+
+    // Efface également les valeurs des inputs
+    titleInput.value = "";
+    categoryInput.value = "";
+    validateButton.classList.remove("true");
 });
 
 //////////////////////////////////////////////////
@@ -64,51 +66,47 @@ returnBack.addEventListener("click", () => {
 //////////////////////////////////////////////////
 
 async function addWork(event) {
-  event.preventDefault(); // Empêche le rechargement de la page lors de la soumission du formulaire
+    event.preventDefault(); // Empêche le rechargement de la page
 
-  // Créer un objet FormData et y ajouter les données
-  const formData = new FormData();
-  formData.append("title", titleInput.value);
-  formData.append("category", categoryInput.value);
-  formData.append("image", inputFile.files[0]);
+    // Créer un objet FormData et y ajouter les données
+    const formData = new FormData();
+    formData.append("title", titleInput.value);
+    formData.append("category", categoryInput.value);
+    formData.append("image", inputFile.files[0]);
 
-  try {
-    // Effectuer une requete POST vers l'API pour ajouter le nouveau projet
-    const response = await fetch("http://localhost:5678/api/works/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+    try {
+        // Effectuer une requete POST vers l'API pour ajouter le nouveau projet
+        const response = await fetch("http://localhost:5678/api/works/", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
 
-    if (response.ok) {
-      const responseData = await response.json();
+        if (response.ok) {
+            const responseData = await response.json();
 
-      // Réinitialiser les champs de l'interface utilisateur
-      titleInput.value = "";
-      categoryInput.value = "";
-      inputFile.value = "";
-      fileDisplay.style.display = "none";
-      validateButton.classList.remove("true");
-    } else {
-      // La requête n'a pas réussi
-      console.error(
-        "Échec de l'ajout du projet :",
-        response.status,
-        response.statusText
-      );
+            // Réinitialiser les champs de l'interface utilisateur
+            titleInput.value = "";
+            categoryInput.value = "";
+            inputFile.value = "";
+            fileDisplay.style.display = "none";
+            validateButton.classList.remove("true");
+        }
+    } catch (error) {
+        console.error(
+            "Une erreur s'est produite lors de l'ajout du projet :",
+            error
+        );
     }
-  } catch (error) {
-    console.error(
-      "Une erreur s'est produite lors de l'ajout du projet :",
-      error
-    );
-  }
 }
 
-// Écouter l'événement de soumission du formulaire (clic sur le bouton valider)
-validateButton.addEventListener("click", addWork);
+// Écouter l'événement de soumission du formulaire
+modalAddWork.addEventListener("submit", (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+    addWork(event); // Appelle la fonction addWork crée précédemment
+});
 
 ///////////////////////////////////////////////////////////
 /**
@@ -117,30 +115,30 @@ validateButton.addEventListener("click", addWork);
 ///////////////////////////////////////////////////////////
 
 inputFile.addEventListener("change", (event) => {
-  const file = event.target.files[0]; // Objet de type FileList dont on récupère le premier (0)
+    const file = event.target.files[0]; // Objet de type FileList dont on récupère le premier (0)
 
-  // Vérifie si la taille du fichier dépasse la limite de 4 Mo (en octets)
-  if (file.size > 4194304) {
-    errorMessageSize.style.display = "block"; // Active l'affichage du message d'erreur
+    // Vérifie si la taille du fichier dépasse la limite de 4 Mo (en octets)
+    if (file.size > 4194304) {
+        errorMessageSize.style.display = "block"; // Active l'affichage du message d'erreur
 
-    inputFile.value = ""; // Réinitialise la valeur de l'input file pour effacer le fichier sélectionné
-  } else {
-    errorMessageSize.style.display = "none"; // Désactive l'affichage du message d'erreur s'il a été appelé
+        inputFile.value = ""; // Réinitialise la valeur de l'input file pour effacer le fichier sélectionné
+    } else {
+        errorMessageSize.style.display = "none"; // Désactive l'affichage du message d'erreur s'il a été appelé
 
-    fileDisplay.style.display = "block"; // Active l'affichage de l'image chargée
+        fileDisplay.style.display = "block"; // Active l'affichage de l'image chargée
 
-    pictureIcon.style.display = "none"; // Désactive l'icon picture
-    addPictureButton.style.display = "none"; // Désactive le bouton ajouter une photo
-    restrictionsText.style.display = "none"; // Désactive le texte de restrictions
+        pictureIcon.style.display = "none"; // Désactive l'icon picture
+        addPictureButton.style.display = "none"; // Désactive le bouton ajouter une photo
+        restrictionsText.style.display = "none"; // Désactive le texte de restrictions
 
-    const reader = new FileReader();
+        const reader = new FileReader();
 
-    reader.onload = (readerEvent) => {
-      fileDisplay.src = readerEvent.target.result;
-    };
+        reader.onload = (readerEvent) => {
+            fileDisplay.src = readerEvent.target.result;
+        };
 
-    reader.readAsDataURL(file);
-  }
+        reader.readAsDataURL(file);
+    }
 });
 
 //////////////////////////////////////////////////
@@ -150,18 +148,18 @@ inputFile.addEventListener("change", (event) => {
 //////////////////////////////////////////////////
 
 fetch("http://localhost:5678/api/categories")
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach((category) => {
-      const option = document.createElement("option"); // On va créer les balises options dans le select
-      option.value = category.id;
-      option.textContent = category.name;
-      categoryInput.appendChild(option);
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((category) => {
+            const option = document.createElement("option"); // On va créer les balises options dans le select
+            option.value = category.id;
+            option.textContent = category.name;
+            categoryInput.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.error("Une erreur s'est produite :", error);
     });
-  })
-  .catch((error) => {
-    console.error("Une erreur s'est produite :", error);
-  });
 
 ///////////////////////////////////////////////////////////////////////
 /**
@@ -170,15 +168,15 @@ fetch("http://localhost:5678/api/categories")
 ///////////////////////////////////////////////////////////////////////
 
 function updateValidationButton() {
-  if (
-    inputFile.files.length > 0 && // Si le compteur de photos est a 0
-    titleInput.value !== "" && // Et les valeurs des input title et category ne sont pas vides
-    categoryInput.value !== ""
-  ) {
-    validateButton.classList.add("true"); // Alors la class "true" est ajoutée au bouton
-  } else {
-    validateButton.classList.remove("true");
-  }
+    if (
+        inputFile.files.length > 0 && // Si le compteur de photos est a 0
+        titleInput.value !== "" && // Et les valeurs des input title et category ne sont pas vides
+        categoryInput.value !== ""
+    ) {
+        validateButton.classList.add("true"); // Alors la class "true" est ajoutée au bouton
+    } else {
+        validateButton.classList.remove("true");
+    }
 }
 
 // On ecoute les événements de modification des champs et on appel la fonction
@@ -194,21 +192,21 @@ categoryInput.addEventListener("input", updateValidationButton);
 
 // Fonction pour cacher le message d'erreur
 function hideErrorMessage() {
-  errorMessageSubmit.style.display = "none";
+    errorMessageSubmit.style.display = "none";
 }
 
 // Affichage du message d'erreur quand submit alors qu'un champ est vide
 validateButton.addEventListener("click", (event) => {
-  if (
-    inputFile.files.length === 0 || // Si le compteur de photos est à 0
-    titleInput.value === "" || // Et ou les valeurs des input title et category sont vides
-    categoryInput.value === ""
-  ) {
-    errorMessageSubmit.style.display = "block";
-    event.preventDefault(); // Empeche l'apparition de la boite de dialogue d'erreur du navigateur
-  } else {
-    hideErrorMessage();
-  }
+    if (
+        inputFile.files.length === 0 || // Si le compteur de photos est à 0
+        titleInput.value === "" || // Et ou les valeurs des input title et category sont vides
+        categoryInput.value === ""
+    ) {
+        event.preventDefault(); // Empêche la soumission du formulaire
+        errorMessageSubmit.style.display = "block";
+    } else {
+        hideErrorMessage();
+    }
 });
 
 // Écoute des modifications des champs de saisie pour cacher le message d'erreur a chaque nouvelle saisie

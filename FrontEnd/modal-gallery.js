@@ -4,84 +4,76 @@
 const modalContainer = document.querySelector(".modal-container"); // On récupère le block modal entier
 const modalTriggers = document.querySelectorAll(".modal-trigger"); // On récupère les boutons ouvrir, fermer et l'overlay
 const galleryEdit = document.querySelector(".gallery-edit"); // On récupère le block edit avec les travaux
-const deleteIcon = document.querySelector(".delete-input"); // On récupère liicone de suppression des travaux
 
-//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 /**
- *   Ouverture et fermeture de la modal gallery
+ *   Fonctions d'ouverture / fermeture de la modal gallery
  */
-//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 // Fonction qui ouvre la modal
 function openModal() {
-  modalContainer.classList.add("active");
+    modalContainer.classList.add("active");
 }
 // Fonction qui ferme la modal
 function closeModal() {
-  modalContainer.classList.remove("active");
+    modalContainer.classList.remove("active");
 
-  // Désactive l'affichage des messages d'erreur
-  errorMessageSize.style.display = "none";
-  errorMessageSubmit.style.display = "none";
+    // Désactive l'affichage des messages d'erreur
+    errorMessageSize.style.display = "none";
+    errorMessageSubmit.style.display = "none";
 
-  // Efface également la photo chargée dans la modal-add-work
-  fileDisplay.style.display = "none";
-  // Puis réactive tout les éléments pour recharger une nouvelle photo
-  pictureIcon.style.display = "block"; // Désactive l'icon picture
-  addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
-  restrictionsText.style.display = "block"; // Désactive le texte de restrictions
+    // Efface également la photo chargée dans la modal-add-work
+    fileDisplay.style.display = "none";
+    // Puis réactive tout les éléments pour recharger une nouvelle photo
+    pictureIcon.style.display = "block"; // Désactive l'icon picture
+    addPictureButton.style.display = "flex"; // Désactive le bouton ajouter une photo
+    restrictionsText.style.display = "block"; // Désactive le texte de restrictions
 
-  // Efface également les valeurs des inputs
-  titleInput.value = "";
-  categoryInput.value = "";
-  validateButton.classList.remove("true");
+    // Efface également les valeurs des inputs
+    titleInput.value = "";
+    categoryInput.value = "";
+    validateButton.classList.remove("true");
 }
 
 // Ajoute un gestionnaire d'événement pour ouvrir la modal lorsque clique sur un bouton avec la classe "modal-trigger"
 modalTriggers.forEach((trigger) =>
-  trigger.addEventListener("click", openModal)
+    trigger.addEventListener("click", openModal)
 );
 
-// Ajoute un gestionnaire d'événement pour fermer la modal lorsque vous cliquez à l'extérieur de celle-ci
+// Ajoute un gestionnaire d'événement pour fermer la modal lorsque l'on clique à l'extérieur de celle-ci
 document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("modal-trigger")) {
-    closeModal(); // Ferme la modal
-  }
+    if (event.target.classList.contains("modal-trigger")) {
+        closeModal();
+    }
 });
 
-///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 /**
- *    Fonction d'Affichage des travaux dans la modal gallery
+ *    Fonction d'Affichage dynamique des travaux dans la modal
  */
-///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
-function editWorks(works) {
-  for (let i = 0; i < works.length; i++) {
-    const work = works[i];
-
+function createWorkElement(work) {
     const galleryEditFigure = document.createElement("figure"); // Création de la balise dédiée aux figures
 
-    const galleryEditImage = document.createElement("img"); // Création de la balise dédiée aux images
-    galleryEditImage.src = work.imageUrl; // On va récupérer la source de l'image dans l'API
-    galleryEditImage.alt = work.title; // On va récupérer l'alt de l'image dans l'API
-    galleryEditImage.classList.add("draggable"); // on ajoute une class pour la gestion du deplacement futur
+    // On lui ajoute comme enfants les balises img, figcaption et les icones
+    galleryEditFigure.innerHTML = `
+        <img src="${work.imageUrl}" alt="${work.title}">
+        <figcaption>éditer</figcaption>
+        <i class="fa-solid fa-trash-can delete-input"></i>
+        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+    `;
 
-    const galleryDeleteIcon = document.createElement("i"); // Création de l'icone de supression
-    galleryDeleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-input");
+    // On récupère l'icone de suppression des travaux générée dans la fonction elle-même
+    const deleteIcon = galleryEditFigure.querySelector(".delete-input");
 
-    const galleryMoveIcon = document.createElement("i"); // Création de l'icone de deplacement
-    galleryMoveIcon.classList.add("fa-solid", "fa-arrows-up-down-left-right");
+    // On detecte le click sur cette icone
+    deleteIcon.addEventListener("click", () => {
+        showDeleteConfirmation(work.id); // On apelle la fonction qui demande la confirmation à l'utilisateur
+    });
 
-    const galleryEditText = document.createElement("figcaption"); // Création de la balise dédiée aux texte
-    galleryEditText.innerText = "éditer";
-
-    // On rattache les balises créées à leurs sections respectives
-    galleryEdit.appendChild(galleryEditFigure);
-    galleryEditFigure.appendChild(galleryEditImage);
-    galleryEditFigure.appendChild(galleryEditText);
-    galleryEditFigure.appendChild(galleryDeleteIcon);
-    galleryEditFigure.appendChild(galleryMoveIcon);
-  }
+    return galleryEditFigure; // Permet de réutiliser la fonction dans la variable workElement plus bas
 }
 
 ///////////////////////////////////////////////////////////////
@@ -90,48 +82,53 @@ function editWorks(works) {
  */
 ///////////////////////////////////////////////////////////////
 
-async function editFetchWorks() {
-  try {
-    const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
-    const works = await response.json(); // Attente de la conversion en JSON
+async function fetchWorks() {
+    try {
+        const response = await fetch("http://localhost:5678/api/works");
+        const works = await response.json();
 
-    editWorks(works); // Appel à la fonction pour afficher les travaux
-
-    ///////////////////////////////////////////////////////////////
-    /**
-     *      Fonction de Suppression des travaux depuis l'API
-     */
-    ///////////////////////////////////////////////////////////////
-
-    // deleteIcon.addEventListener("click", async (e) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-
-    //   const deleteWorkId = works.id;
-    //   const token = localStorage.getItem("token"); // On récupère le token du localStorage
-
-    //   let response = await fetch(
-    //     `http://localhost:5678/api/works/${deleteWorkId}`,
-    //     {
-    //       method: "DELETE",
-    //       headers: {
-    //         accept: "*/*",
-    //         Authorization: `Bearer ${"token"}`,
-    //       },
-    //     }
-    //   );
-    //   if (response.ok) {
-    //     return false;
-    //     // if HTTP-status is 200-299
-    //     //alert("Photo supprimé avec succes");
-    //   } else {
-    //     alert("Echec de suppression");
-    //   }
-    // });
-  } catch (error) {
-    throw new Error("Une erreur s'est produite", error);
-  }
+        works.forEach((work) => {
+            const workElement = createWorkElement(work); // On stock la fonction qui crée les éléments dans une variable
+            galleryEdit.appendChild(workElement); // On ajoute chaque travaux comment enfants de la gallerie
+        });
+    } catch (error) {
+        console.error("Une erreur s'est produite :", error);
+    }
 }
 
-// Appel de la fonction de Récupération des travaux depuis l'API
-editFetchWorks();
+////////////////////////////////////////////
+/**
+ *   Fonction de suppression des travaux
+ */
+////////////////////////////////////////////
+
+async function deleteWork(id) {
+    try {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+            method: "DELETE",
+            headers: {
+                accept: "*/*",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (response.ok) {
+            window.alert("Projet supprimé avec succès");
+        }
+    } catch (error) {
+        console.error("Une erreur s'est produite :", error);
+    }
+}
+
+// Fonction qui ouvre une popup du navigateur pour demander à l'utilisateur la confirmation
+function showDeleteConfirmation(id) {
+    // La variable va contenir le texte qui sera affiché dans la popup grace a confirm
+    const confirmation = confirm(
+        "Êtes-vous sûr de vouloir supprimer ce projet ?"
+    );
+    if (confirmation) {
+        deleteWork(id); // On apelle la fonction de suppression si l'utilisateur click sur "ok"
+    }
+}
+
+fetchWorks(); // Appel de la fonction générale de Récupération des travaux depuis l'API

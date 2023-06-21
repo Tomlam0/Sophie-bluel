@@ -21,20 +21,20 @@ const filterDisplay = document.querySelector(".filtres"); // On va chercher l'é
 
 // Si le token existe dans le localStorage
 if (token !== null) {
-  editDisplay.style.display = "flex"; // on active la section edit
+    editDisplay.style.display = "flex"; // on active la section edit
 
-  loginDisplay.style.display = "none"; // on desactive l'élément login
-  logoutDisplay.style.display = "block"; // on active l'élément logout
+    loginDisplay.style.display = "none"; // on desactive l'élément login
+    logoutDisplay.style.display = "block"; // on active l'élément logout
 
-  modifPhotoDisplay.style.display = "flex"; // on active la modif projets
-  modifProjetsDisplay.style.display = "flex"; // on active la modif projets
+    modifPhotoDisplay.style.display = "flex"; // on active la modif projets
+    modifProjetsDisplay.style.display = "flex"; // on active la modif projets
 
-  filterDisplay.style.display = "none"; // on desactive les filtres
+    filterDisplay.style.display = "none"; // on desactive les filtres
 
-  // Le token n'existe pas dans le localStorage
+    // Le token n'existe pas dans le localStorage
 } else {
-  loginDisplay.style.display = "block"; // on active l'élément login
-  logoutDisplay.style.display = "none"; // on desactive l'élément logout
+    loginDisplay.style.display = "block"; // on active l'élément login
+    logoutDisplay.style.display = "none"; // on desactive l'élément logout
 }
 
 ///////////////////////////////////////////////////////////////
@@ -44,5 +44,5 @@ if (token !== null) {
 ///////////////////////////////////////////////////////////////
 
 logoutDisplay.addEventListener("click", () => {
-  window.localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
 });

@@ -7,93 +7,93 @@
 /* Bandeau haut de page */
 
 .edit-section {
-  display: none; /* S'active dans le js lors d'un log réussi */
-  justify-content: center;
+    display: none; /* S'active dans le js lors d'un log réussi */
+    justify-content: center;
 
-  height: 60px;
-  background-color: var(--edit-mode-bg-color);
+    height: 60px;
+    background-color: var(--edit-mode-bg-color);
 }
 
 .edit-section .edit-mode {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 
-  gap: 8px;
+    gap: 8px;
 
-  color: var(--dark-bg-text-color);
-  font-size: 14px;
+    color: var(--dark-bg-text-color);
+    font-size: 14px;
 }
 
 .edit-section .edit-mode .fa-pen-to-square {
-  font-size: 19px;
+    font-size: 19px;
 }
 
 .edit-section .edit-button {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .edit-section .edit-button div {
-  background-color: var(--dark-bg-text-color);
+    background-color: var(--dark-bg-text-color);
 
-  font-family: "Work Sans";
-  font-weight: 600;
+    font-family: "Work Sans";
+    font-weight: 600;
 
-  border-radius: 60px;
-  padding: 13px;
-  margin-left: 21px;
+    border-radius: 60px;
+    padding: 13px;
+    margin-left: 21px;
 }
 
 .edit-section .edit-button div:hover {
-  color: var(--secondary-color);
+    color: var(--secondary-color);
 }
 
 /* Bouton modifier photo */
 
 .modif-photo {
-  display: none; /* S'active dans le js lors d'un log réussi */
-  align-items: center;
+    display: none; /* S'active dans le js lors d'un log réussi */
+    align-items: center;
 
-  margin-top: 10px;
-  gap: 8px;
+    margin-top: 10px;
+    gap: 8px;
 }
 
 .modif-photo .fa-pen-to-square,
 .modif-photo p {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .modif-photo .fa-pen-to-square:hover,
 .modif-photo p:hover {
-  font-weight: var(--hover-text-color);
+    font-weight: var(--hover-text-color);
 }
 
 .modif-photo .fa-pen-to-square {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 /* Bouton modifier projet */
 
 .modif-projets {
-  display: none; /* S'active dans le js lors d'un log réussi */
-  align-items: center;
+    display: none; /* S'active dans le js lors d'un log réussi */
+    align-items: center;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  margin-left: 31px;
-  left: 30px;
-  gap: 8px;
+    margin-left: 31px;
+    left: 30px;
+    gap: 8px;
 }
 
 .modif-projets .fa-pen-to-square:hover,
 .modif-projets p:hover {
-  font-weight: var(--hover-text-color);
+    font-weight: var(--hover-text-color);
 }
 
 .modif-projets .fa-pen-to-square {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 /* ============================
@@ -105,47 +105,47 @@
    ============== */
 
 @media (min-width: 320px) and (max-width: 768px) {
-  /*Bandeau Edit */
+    /*Bandeau Edit */
 
-  .edit-section {
-    flex-direction: column;
-    height: 130px;
-  }
+    .edit-section {
+        flex-direction: column;
+        height: 130px;
+    }
 
-  .edit-section .edit-mode {
-    justify-content: center;
-  }
+    .edit-section .edit-mode {
+        justify-content: center;
+    }
 
-  .edit-section .edit-button {
-    justify-content: center;
-    margin-top: 15px;
-  }
+    .edit-section .edit-button {
+        justify-content: center;
+        margin-top: 15px;
+    }
 
-  .edit-section .edit-button div {
-    margin: 0;
-  }
+    .edit-section .edit-button div {
+        margin: 0;
+    }
 
-  /* Bouton modifier photo */
-  .modif-photo {
-    justify-content: center;
-    margin-top: 20px;
+    /* Bouton modifier photo */
+    .modif-photo {
+        justify-content: center;
+        margin-top: 20px;
 
-    font-size: 16px;
-  }
+        font-size: 16px;
+    }
 
-  /* Modifier projet */
+    /* Modifier projet */
 
-  .section-projets {
-    flex-direction: column;
-    margin-top: 70px;
-  }
+    .section-projets {
+        flex-direction: column;
+        margin-top: 70px;
+    }
 
-  .modif-projets {
-    justify-content: center;
-    position: inherit;
-    margin-top: 25px;
-    margin-left: 0;
+    .modif-projets {
+        justify-content: center;
+        position: inherit;
+        margin-top: 25px;
+        margin-left: 0;
 
-    font-size: 16px;
-  }
+        font-size: 16px;
+    }
 }

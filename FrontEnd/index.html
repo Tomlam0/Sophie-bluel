@@ -37,8 +37,8 @@
 		<div class="overlay modal-trigger">
 
 			<!-- Modal Galery -->
-			<div class="modal modal-gallery" role="dialog" aria-labelledby="modalTitle">
-				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
+			<div class="modal modal-gallery" role="dialog">
+				<i class="fa-solid fa-xmark modal-trigger"></i>
 				<h3>Galerie photo</h3>
 				<div class="gallery-edit">
 					<!-- Contenu fetch API dans modal-gallery.js -->
@@ -54,9 +54,9 @@
 			<!-- Fin de Modal Galery -->
 
 			<!-- Modal Add Work -->
-			<div class="modal modal-add-work" role="dialog" aria-labelledby="modalTitle">
-				<i class="fa-solid fa-arrow-left" aria-labelledby="returnBack"></i>
-				<i class="fa-solid fa-xmark modal-trigger" aria-labelledby="closeModal"></i>
+			<div class="modal modal-add-work" role="dialog">
+				<i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark modal-trigger"></i>
 				<h3>Ajout photo</h3>
 
 
@@ -90,8 +90,8 @@
 						<!-- Icone pour remplacer la flèche générée par le navigateur -->
 						<i class="fa-solid fa-angle-down"></i>
 						<select name="categories" id="categories">
-							<!-- Cette option permettent d'avoir le champ vide de base -->
-							<option selected></option>
+							<!-- Cette option permettent d'avoir le champ vide de base pré-sélectionné -->
+							<option selected hidden>null</option>
 							<!-- Cette option permet de faire comprendre que les champ sont à sélectionner -->
 							<option disabled>Sélectionnez une catégorie</option>
 						</select>

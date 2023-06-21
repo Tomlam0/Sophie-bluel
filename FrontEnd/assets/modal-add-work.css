@@ -194,7 +194,6 @@
 
 /* Recalibrage de la flèche */
 .modal-add-work .fa-angle-down {
-    font-size: 17 px;
     color: var(--arrow-categories-color);
 
     position: absolute;

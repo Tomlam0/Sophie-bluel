@@ -87,6 +87,8 @@ async function addWork(event) {
         if (response.ok) {
             const responseData = await response.json();
 
+            window.alert("Projet ajouté avec succès"); // Popup qui préviens de l'ajout effectué
+
             // Réinitialiser les champs de l'interface utilisateur
             titleInput.value = "";
             categoryInput.value = "";
@@ -105,7 +107,15 @@ async function addWork(event) {
 // Écouter l'événement de soumission du formulaire
 modalAddWork.addEventListener("submit", (event) => {
     event.preventDefault(); // Empêche le rechargement de la page
-    addWork(event); // Appelle la fonction addWork crée précédemment
+
+    // La variable va contenir le texte qui sera affiché dans la popup grace a confirm
+    const confirmation = confirm(
+        "Êtes-vous sûr de vouloir ajouter ce projet ?"
+    );
+
+    if (confirmation) {
+        addWork(event); // Appelle la fonction addWork crée précédemment
+    }
 });
 
 ///////////////////////////////////////////////////////////

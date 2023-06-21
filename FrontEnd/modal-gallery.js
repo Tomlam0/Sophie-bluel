@@ -70,7 +70,7 @@ function createWorkElement(work) {
 
     // On detecte le click sur cette icone
     deleteIcon.addEventListener("click", () => {
-        showDeleteConfirmation(work.id); // On apelle la fonction qui demande la confirmation à l'utilisateur
+        showDeleteConfirmation(work.id); // On apelle la fonction qui demande la confirmation à l'utilisateur déclarée plus bas
     });
 
     return galleryEditFigure; // Permet de réutiliser la fonction dans la variable workElement plus bas
@@ -113,7 +113,7 @@ async function deleteWork(id) {
         });
 
         if (response.ok) {
-            window.alert("Projet supprimé avec succès");
+            window.alert("Projet supprimé avec succès"); // Popup qui préviens de la supression effectué
         }
     } catch (error) {
         console.error("Une erreur s'est produite :", error);

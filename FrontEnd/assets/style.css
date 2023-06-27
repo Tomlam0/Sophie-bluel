@@ -34,7 +34,7 @@
 
 /* ============================
               GLOBAL
-   ============================ */
+   ============================ */ 
 
 body {
     margin: auto;
@@ -48,7 +48,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
+ 
 a:hover {
     font-weight: var(--hover-text-color);
 

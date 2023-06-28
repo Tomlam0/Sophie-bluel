@@ -22,7 +22,7 @@ const validateButton = document.querySelector(".validate-button"); // On récup�
 const titleInput = document.getElementById("title"); // On récupère la selection du titre
 
 //////////////////////////////////////////////////
-/**
+/*
  *   Ouverture et fermeture de la modal add work
  */
 //////////////////////////////////////////////////
@@ -60,7 +60,7 @@ returnBack.addEventListener("click", () => {
 });
 
 //////////////////////////////////////////////////
-/**
+/*
  *          Fonction d'ajout work
  */
 //////////////////////////////////////////////////
@@ -119,7 +119,7 @@ modalAddWork.addEventListener("submit", (event) => {
 });
 
 ///////////////////////////////////////////////////////////
-/**
+/*
  *  Afficher l'image chargée à la place de "Ajouter photo"
  */
 ///////////////////////////////////////////////////////////
@@ -152,7 +152,7 @@ inputFile.addEventListener("change", (event) => {
 });
 
 //////////////////////////////////////////////////
-/**
+/*
  *      Choix de la catégorie "dynamique"
  */
 //////////////////////////////////////////////////
@@ -172,7 +172,7 @@ fetch("http://localhost:5678/api/categories")
     });
 
 ///////////////////////////////////////////////////////////////////////
-/**
+/*
  *    Colorisation du bouton valider quand les champs sont remplis
  */
 ///////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ titleInput.addEventListener("input", updateValidationButton);
 categoryInput.addEventListener("input", updateValidationButton);
 
 /////////////////////////////////////////////////////////////////////////////
-/**
+/*
  *  Affichage du message d'erreur quand submit alors qu'un champ est vide
  */
 /////////////////////////////////////////////////////////////////////////////

@@ -10,7 +10,7 @@ const eye = document.querySelector(".fa-eye"); // On va chercher les éléments 
 const eyeOff = document.querySelector(".fa-eye-slash");
 
 /////////////////////////////////////////////////
-/**
+/*
  *      Envoi du formulaire de connexion
  */
 /////////////////////////////////////////////////
@@ -20,12 +20,12 @@ loginForm.addEventListener("submit", (event) => {
     // Désactivation du comportement par défaut du navigateur
     event.preventDefault();
 
-    //Appel de la fonction qui fetch l'API (l.24)
+    //Appel de la fonction qui fetch l'API
     login();
 });
 
 /////////////////////////////////////////////////
-/**
+/*
  *     Fonction de login qui fetch l'API
  */
 /////////////////////////////////////////////////
@@ -70,7 +70,7 @@ async function login() {
 }
 
 /////////////////////////////////////////////////
-/**
+/*
  *   Affichage / masquage des icones password
  */
 /////////////////////////////////////////////////

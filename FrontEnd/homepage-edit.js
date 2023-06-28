@@ -14,7 +14,7 @@ const modifProjetsDisplay = document.querySelector(".modif-projets"); // On va c
 const filterDisplay = document.querySelector(".filtres"); // On va chercher l'élément filtres dans le DOM
 
 ///////////////////////////////////////////////////////////////
-/**
+/*
  *  Affichage des éléments d'edit de la homepage si login ok
  */
 ///////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ if (token !== null) {
 }
 
 ///////////////////////////////////////////////////////////////
-/**
+/*
  *  Click sur le logout pour delete le token
  */
 ///////////////////////////////////////////////////////////////

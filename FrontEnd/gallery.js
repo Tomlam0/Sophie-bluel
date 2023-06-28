@@ -6,7 +6,7 @@ const baliseFiltre = document.querySelector(".filtres"); // On va chercher la ba
 const btnTous = document.querySelector(".btn-tous"); // On va chercher le filtre "tous"
 
 ////////////////////////////////////////////////////////////////
-/**
+/*
  *   Fonction d'Affichage des travaux sur la homepage du site
  */
 ////////////////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ function displayWorks(works) {
 }
 
 ///////////////////////////////////////////////////////
-/**
+/*
  *   Fonction de Récupération des travaux depuis l'API
  */
 ///////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ async function fetchWorks() {
         displayWorks(works); // Appel à la fonction pour afficher les travaux
 
         /////////////////////////////////////////////////
-        /**
+        /*
          *           Filtrage des boutons
          */
         /////////////////////////////////////////////////
@@ -99,5 +99,5 @@ async function fetchWorks() {
     }
 }
 
-// Appel de la fonction de Récupération des travaux depuis l'API (l.38)
+// Appel de la fonction de Récupération des travaux depuis l'API
 fetchWorks();

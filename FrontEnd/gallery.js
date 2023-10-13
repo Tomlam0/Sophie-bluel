@@ -45,7 +45,7 @@ async function fetchWorks() {
         const response = await fetch("http://localhost:5678/api/works"); // Attente de la réponse
         const works = await response.json(); // Attente de la conversion en JSON
 
-        displayWorks(works); // Appel à la fonction pour afficher les travaux
+        dworksisplayWorks(); // Appel à la fonction pour afficher les travaux
 
         /////////////////////////////////////////////////
         /*

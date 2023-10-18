@@ -4,8 +4,6 @@ info:
     description: API Backend for Architect Website
     version: 1.0.0
 servers:
-    - url: https://api-sophie-bluel.vercel.app/api/ 
-      description: Production server
     - url: http://localhost:5678/api/ 
       description: Development server
 
